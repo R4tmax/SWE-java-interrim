@@ -1,5 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class GUIController {
         
 
         healthLabel.appendText("HEALTH:");
-        showHealth();
+        //showHealth();
         manaLabel.appendText("MANA:");
         showMana();
 
@@ -43,26 +44,37 @@ public class GUIController {
         Platform.runLater(() -> GUIInput.requestFocus());
     }
 
+    @FXML
+    private void present(String text){
+        GUIOutput.appendText(text);
+        GUIOutput.appendText("\n");
+    }
+
+
+
+    public void acceptInput(ActionEvent actionEvent) {
+        String GUIUserInput = GUIInput.getText();
+        GUIInput.clear();
+        present(GUIUserInput);
+    }
+
+       /* private void showHealth(TheKnight player) {
+        GUIHealth.appendText(String.valueOf(player.getCurrentHealth()));
+    }*/
+
     private void showMana() {
+
     }
 
     private void showArmor() {
-        
+
     }
 
     private void showDamage() {
-        
-    }
 
-    private void showHealth() {
-        
     }
 
     private void showGold() {
     }
-
-    public void acceptInput(ActionEvent actionEvent) {
-    }
-    
     
 }

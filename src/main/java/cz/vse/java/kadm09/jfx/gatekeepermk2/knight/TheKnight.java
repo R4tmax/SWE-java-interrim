@@ -16,6 +16,30 @@ public class TheKnight {
     protected boolean isDead = false;
 
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public int getCurrentMana() {
+        return currentMana;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getGoldHeld() {
+        return goldHeld;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
     public TheKnight(int currentHealth, int currentMana, int armor, int damage, int goldHeld, Coordinates position, boolean isDead) {
         this.currentHealth = currentHealth;
         this.currentMana = currentMana;

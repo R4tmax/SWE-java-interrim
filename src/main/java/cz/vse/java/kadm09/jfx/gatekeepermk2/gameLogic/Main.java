@@ -1,5 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +11,8 @@ import static java.lang.System.exit;
 public class Main extends Application {
 
     public static void main(String[] args) {
+
+        Setup.spawnPlayer();
 
         if (args.length > 0 && args[0].equals("cli")) {
             System.out.println("test launch");

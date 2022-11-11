@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GUIController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="-Infinity" prefHeight="30.0" vgrow="NEVER" />
+        <RowConstraints maxHeight="352.79998779296875" minHeight="10.0" prefHeight="352.79998779296875" vgrow="NEVER" />
+        <RowConstraints maxHeight="622.8000091552734" minHeight="10.0" prefHeight="306.4000122070312" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <TextField fx:id="GUIInput" onAction="#acceptInput" GridPane.rowIndex="3" />
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="New Game">
+            <MenuItem mnemonicParsing="false" text="Close" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="Delete" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="placeholder">
+            <MenuItem mnemonicParsing="false" text="About" />
+        </Menu>
+    </MenuBar>
+    <SplitPane fx:id="GUIOutputSplitter" dividerPositions="0.3" GridPane.rowIndex="1">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <GridPane prefHeight="343.0" prefWidth="302.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <TextArea fx:id="GUIHealth" editable="false" styleClass="healthText" stylesheets="@styles.css" GridPane.columnIndex="1" />
+                <TextArea fx:id="GUIMana" editable="false" styleClass="manaText" stylesheets="@styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextArea fx:id="GUIArmor" editable="false" styleClass="armorText" stylesheets="@styles.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextArea fx:id="GUIAttack" editable="false" styleClass="damageText" stylesheets="@styles.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextArea fx:id="GUIGold" editable="false" styleClass="goldText" stylesheets="@styles.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextArea fx:id="healthLabel" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="statLabel" stylesheets="@styles.css" />
+                <TextArea fx:id="manaLabel" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="statLabel" stylesheets="@styles.css" GridPane.rowIndex="1" />
+                <TextArea fx:id="armorLabel" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="statLabel" stylesheets="@styles.css" GridPane.rowIndex="2" />
+                <TextArea fx:id="damageLabel" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="statLabel" stylesheets="@styles.css" GridPane.rowIndex="3" />
+                <TextArea fx:id="goldLabel" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="statLabel" stylesheets="@styles.css" GridPane.rowIndex="4" />
+            </GridPane>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="702.0">
+            <TextArea fx:id="GUIOutput" editable="false" layoutX="-4.0" layoutY="-5.0" prefHeight="354.0" prefWidth="715.0" />
+        </AnchorPane>
+    </SplitPane>
+    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+        <GridPane prefHeight="307.0" prefWidth="306.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <ImageView fitHeight="64.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fitHeight="68.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true"
+                       GridPane.rowIndex="1"/>
+            <ImageView fitHeight="64.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true"
+                       GridPane.rowIndex="2"/>
+            <ImageView fitHeight="64.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true"
+                       GridPane.rowIndex="3"/>
+            <ImageView fitHeight="67.0" fitWidth="306.0" pickOnBounds="true" preserveRatio="true"
+                       GridPane.rowIndex="4"/>
+        </GridPane>
+    </HBox>
+</GridPane>

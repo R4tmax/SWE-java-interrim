@@ -1,0 +1,48 @@
+
+.upArrow {
+    -fx-shape: "M 750 500 L 400 100 L 50 500 L 750 500";
+    -fx-background-color: #FF0000;
+}
+
+.downArrow {
+    -fx-shape: "M 100 100 L 700 100 L 400 500 L 100 100 "
+}
+
+.leftArrow {
+    -fx-shape: "M 200 300 L 700 100 L 700 500 L 200 300 "
+}
+
+.rightArrow {
+    -fx-shape: "M 700 300 L 50 100 L 50 500 L 700 300 "
+}
+
+.statLabel {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+
+.healthText {
+    -fx-text-fill:#f54257;
+    -fx-font-weight: bold;
+}
+
+.manaText {
+    -fx-text-fill:#5742f5;
+    -fx-font-weight: bold;
+}
+
+.armorText {
+    -fx-text-fill:#438c3f;
+    -fx-font-weight: bold;
+}
+
+.damageText {
+    -fx-text-fill: #d142f5;
+    -fx-font-weight: bold;
+}
+
+.goldText {
+    -fx-text-fill: #f5b342;
+    -fx-font-weight: bold;
+}

@@ -12,7 +12,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        Setup.spawnPlayer();
+        Setup.initGame();
 
         if (args.length > 0 && args[0].equals("cli")) {
             System.out.println("test launch");

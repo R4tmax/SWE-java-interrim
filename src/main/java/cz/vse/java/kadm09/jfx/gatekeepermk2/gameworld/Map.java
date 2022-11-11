@@ -1,10 +1,18 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
+
 public class Map {
     private static final Room [][] gameArea = new Room[5][5];
 
     public static Room getCurrentPosition(int x, int y) {
         return gameArea[x][y];
+    }
+
+    public static String printPosition(TheKnight player) {
+        return Map.getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).getName()
+                + "\n"
+                + Map.getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).getDescription();
     }
 
     public static void fillMap () {

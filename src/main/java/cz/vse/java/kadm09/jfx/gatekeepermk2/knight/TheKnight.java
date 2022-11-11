@@ -12,7 +12,7 @@ public class TheKnight {
     protected int goldHeld = 250;
     //public static final ArrayList<Consumable> inventory = new ArrayList<>();
     public final int INVENTORY_CAP = 5;
-    //protected static com.vse.kadm09.swerebased.knight.KnightCoordinates position = new com.vse.kadm09.swerebased.knight.KnightCoordinates(4,2);
+    protected Coordinates position = new Coordinates(4,2);
     protected boolean isDead = false;
 
     public TheKnight() {

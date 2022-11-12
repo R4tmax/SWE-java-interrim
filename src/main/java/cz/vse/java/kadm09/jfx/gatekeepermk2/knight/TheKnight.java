@@ -15,12 +15,12 @@ public class TheKnight implements ObservedElement {
     protected int armor;
     protected int damage;
     protected int goldHeld;
-    //public static final ArrayList<Consumable> inventory = new ArrayList<>();
+    //public final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int INVENTORY_CAP = 5;
     protected Coordinates position;
     protected boolean isDead = false;
 
-    public Set<Observer> listOfObservers = new HashSet<Observer>();
+    public Set<Observer> listOfObservers = new HashSet<>();
 
 
     public int getCurrentHealth() {
@@ -116,6 +116,26 @@ public class TheKnight implements ObservedElement {
                 """;
     }
 
+
+    /**
+     * This function simply assures that currentHealth
+     * can never exceed MAX_HEALTH, take note that
+     * below zero checks are handled separately.
+     */
+    public void preventOverheal () {
+        if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
+    }
+
+
+    /**
+     * This function simply assures that currentMana
+     * can never exceed MAX_MANA, take note that
+     * below zero checks are handled separately.
+     */
+    public void preventOvercast() {
+        if (currentMana > MAX_MANA) currentMana = MAX_MANA;
+    }
+
     public void moveKnight (String direction, TheKnight player, Map gameMap) {
         int tmpHorizontal = player.position.horizontal;
         int tmpVertical = player.position.vertical;
@@ -134,6 +154,15 @@ public class TheKnight implements ObservedElement {
 
     private void validateMove(int tmpHorizontal, int tmpVertical) {
     }
+
+    /*public static String presentInventoryContent () {
+        StringBuilder toPresent = new StringBuilder("Currently held: \n");
+        for (Consumable item : inventory ) {
+            toPresent.append(item.getName());
+        }
+
+        return toPresent.toString();
+    }*/
 
     @Override
     public void registerObserver(Observer observer) {

@@ -5,8 +5,14 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 import java.util.Scanner;
 
+/**
+ * @author Martin Kadlec
+ * @version 1.0.0
+ *
+ * Public class which handles the command processing
+ * for both CLI and GUI version of the game.
+ */
 public class Commands {
-
 
     public static String processInput (TheKnight player, Map gameMap) {
         Scanner input = new Scanner(System.in);
@@ -37,9 +43,7 @@ public class Commands {
                 //case "cast" -> Spells.castSpells(input);
                 //case "interact" -> Interactions.attemptInteraction(input);
 
-            case "quitgame" -> {
-                System.exit(0);
-            }
+            case "quitgame" -> System.exit(0);
             default -> {
                 return("Unknown command, use HELP command if you are lost.");
             }

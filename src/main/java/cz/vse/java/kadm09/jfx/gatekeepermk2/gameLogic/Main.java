@@ -10,13 +10,35 @@ import javafx.stage.Stage;
 
 import static java.lang.System.exit;
 
+/**
+ *
+ *  @author Martin Kadlec
+ *  @version 1.0.0
+ * <p>
+ *      Main class of the program, handles the initial splitting
+ *      of the CLI and GUI accesses to the program
+ *      based on the config parameter.
+ * </p>
+ *
+ * <p>
+ *     For the CLI version, handles the calls to the Commands class for
+ *     further logic handling.
+ * </p>
+ *
+ * @see Commands
+ */
 public class Main extends Application {
 
+    /**
+     * Behaves as described in the function doc.
+     * @param args standard args, expects either empty value or "CLI"
+     */
     public static void main(String[] args) {
 
 
         if (args.length > 0 && args[0].equals("cli")) {
 
+            System.out.println(Setup.introMessage());
             //Setup.initGame();
             TheKnight player=Setup.createKnight();
             Map gameMap = Setup.createMap();
@@ -36,6 +58,16 @@ public class Main extends Application {
 
     }
 
+    /**
+     *
+     * <p>
+     *     Start function that handles loading the JavaFX
+     *     components before execution of the program.
+     * </p>
+     *
+     * @param primaryStage Called by the JavaFX libraries to present the GUI output
+     * @throws Exception Standard application exception throw
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();

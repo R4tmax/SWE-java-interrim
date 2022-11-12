@@ -31,6 +31,7 @@ public class GUIController implements Observer{
     @FXML
     private void initialize (){
 
+        present(Setup.introMessage());
         player.registerObserver(this);
 
         healthLabel.appendText("HEALTH:");

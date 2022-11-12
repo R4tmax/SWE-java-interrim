@@ -7,6 +7,21 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Martin Kadlec
+ * @version 2.0.0
+ *
+ * <p>
+ *     Main class of the game.
+ *     Represents the player character of the game
+ *     through which the entire experience plays out.
+ * </p>
+ *
+ * @see Coordinates
+ * @see Map
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Main
+ *
+ */
 public class TheKnight implements ObservedElement {
     public final int MAX_HEALTH = 200;
     protected int currentHealth;

@@ -12,8 +12,7 @@ public class Commands {
         Scanner input = new Scanner(System.in);
         System.out.println(" > ");
         String enteredText = input.nextLine();
-        String output = commandList(enteredText.toLowerCase(), player, gameMap);
-        return  output;
+        return commandList(enteredText.toLowerCase(), player, gameMap);
     }
 
     public static String commandList (String input, TheKnight player,Map gameMap ) {

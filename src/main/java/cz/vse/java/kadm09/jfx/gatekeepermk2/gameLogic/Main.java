@@ -14,12 +14,17 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         TheKnight player=Setup.createKnight();
-        Map gameMap = Setup.createMap();
+        //Map gameMap = Setup.createMap();
         //Setup.initGame();
 
         if (args.length > 0 && args[0].equals("cli")) {
-            System.out.println(Commands.processInput(player));
-            exit(0);
+            while (true) {
+                System.out.println(Commands.processInput(player));
+
+                if (player.isDead()) exit(0);
+            }
+
+
         } else
         {
             launch();

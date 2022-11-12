@@ -14,4 +14,15 @@ public class Setup {
 
     }
 
+    public static Map createMap(){
+        Map gameMap = new Map();
+        gameMap.fillMap();
+        return gameMap;
+    }
+
+    public static TheKnight createKnight(){
+        TheKnight player = new TheKnight(200,50,2,15,250,new Coordinates(4,2),false);
+        return player;
+    }
+
 }

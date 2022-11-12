@@ -1,6 +1,8 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,14 +13,12 @@ import static java.lang.System.exit;
 public class Main extends Application {
 
     public static void main(String[] args) {
-
-        Setup.initGame();
+        TheKnight player=Setup.createKnight();
+        Map gameMap = Setup.createMap();
+        //Setup.initGame();
 
         if (args.length > 0 && args[0].equals("cli")) {
-
-            System.out.println(Commands.processInput());
-
-
+            System.out.println(Commands.processInput(player));
             exit(0);
         } else
         {

@@ -54,7 +54,7 @@ public class TheKnight {
         return position;
     }
 
-    public String presentCommandListExploration() {
+    public String presentKnightStatusExploration() {
         String toPresent = "Current health: " + this.currentHealth + "\n";
 
 
@@ -69,5 +69,18 @@ public class TheKnight {
 
 
         return toPresent;
+    }
+
+    public String presentCommandListExploration() {
+        return """ 
+                Following commands are available to you at the moment:
+                => ATTACK - Deal direct damage to your enemy, if you are lucky, you can deal critical damage for twice the usual amount.
+                => SHOW INVENTORY - Prints the contents of your inventory. (this won't cost you your turn)
+                => USE ITEM - allows you to use items held in your inventory
+                => SPELL LIST - prints available spells and basic info about them (this won't cost you your turn)
+                => CAST - Allows you the cast spells, expects name of the spell as input after prompt
+                
+                Running away from monsters is not an option, good luck!
+                """;
     }
 }

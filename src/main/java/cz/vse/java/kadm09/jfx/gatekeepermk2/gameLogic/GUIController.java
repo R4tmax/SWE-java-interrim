@@ -46,6 +46,7 @@ public class GUIController {
         goldLabel.appendText("GOLD HELD");
         showGold();
 
+        present(gameMap.presentPosition(player));
         Platform.runLater(() -> GUIInput.requestFocus());
     }
 

@@ -13,11 +13,15 @@ import static java.lang.System.exit;
 public class Main extends Application {
 
     public static void main(String[] args) {
-        TheKnight player=Setup.createKnight();
-        //Map gameMap = Setup.createMap();
-        //Setup.initGame();
+
 
         if (args.length > 0 && args[0].equals("cli")) {
+
+            //Setup.initGame();
+            TheKnight player=Setup.createKnight();
+            Map gameMap = Setup.createMap();
+            System.out.println(gameMap.presentPosition(player));
+
             while (true) {
                 System.out.println(Commands.processInput(player));
 

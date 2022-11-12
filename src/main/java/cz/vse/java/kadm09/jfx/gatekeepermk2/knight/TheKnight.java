@@ -1,6 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.knight;
 
-import java.util.ArrayList;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 
 public class TheKnight {
     public final int MAX_HEALTH = 200;
@@ -82,5 +82,24 @@ public class TheKnight {
                 
                 Running away from monsters is not an option, good luck!
                 """;
+    }
+
+    public void moveKnight (String direction, TheKnight player, Map gameMap) {
+        int tmpHorizontal = player.position.horizontal;
+        int tmpVertical = player.position.vertical;
+
+        direction = direction.replaceAll("\\s","");
+            switch (direction.toLowerCase()) {
+                case "north" -> player.position.horizontal -= 1;
+                case "west" -> player.position.vertical -= 1;
+                case "east" -> player.position.vertical += 1;
+                case "south" -> player.position.horizontal += 1;
+                default -> System.out.println("Unknown direction");
+            }
+
+
+    }
+
+    private void validateMove(int tmpHorizontal, int tmpVertical) {
     }
 }

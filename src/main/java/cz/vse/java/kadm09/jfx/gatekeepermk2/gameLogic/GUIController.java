@@ -61,7 +61,7 @@ public class GUIController {
     public void acceptInput(ActionEvent actionEvent) {
         String GUIUserInput = GUIInput.getText();
         GUIInput.clear();
-        present(Commands.commandList(GUIUserInput,player));
+        present(Commands.commandList(GUIUserInput,player, gameMap));
 
     }
 

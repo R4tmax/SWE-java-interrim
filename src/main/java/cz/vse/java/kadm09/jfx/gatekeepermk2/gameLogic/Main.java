@@ -23,7 +23,7 @@ public class Main extends Application {
             System.out.println(gameMap.presentPosition(player));
 
             while (true) {
-                System.out.println(Commands.processInput(player));
+                System.out.println(Commands.processInput(player,gameMap));
 
                 if (player.isDead()) exit(0);
             }

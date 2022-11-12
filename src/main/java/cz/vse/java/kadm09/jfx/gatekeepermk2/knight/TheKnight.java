@@ -36,16 +36,36 @@ public class TheKnight implements ObservedElement {
         return currentMana;
     }
 
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
+        notifyObserver();
+    }
+
     public int getArmor() {
         return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+        notifyObserver();
     }
 
     public int getDamage() {
         return damage;
     }
 
+    public void setDamage(int damage) {
+        this.damage = damage;
+        notifyObserver();
+    }
+
     public int getGoldHeld() {
         return goldHeld;
+    }
+
+    public void setGoldHeld(int goldHeld) {
+        this.goldHeld = goldHeld;
+        notifyObserver();
     }
 
     public boolean isDead() {

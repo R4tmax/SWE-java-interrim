@@ -36,16 +36,16 @@ public class GUIController implements Observer{
         healthLabel.appendText("HEALTH:");
         showHealth(player);
         manaLabel.appendText("MANA:");
-        showMana();
+        showMana(player);
 
         armorLabel.appendText("ARMOR");
-        showArmor();
+        showArmor(player);
 
         damageLabel.appendText("DAMAGE");
-        showDamage();
+        showDamage(player);
 
         goldLabel.appendText("GOLD HELD");
-        showGold();
+        showGold(player);
 
         present(gameMap.presentPosition(player));
         Platform.runLater(() -> GUIInput.requestFocus());
@@ -71,23 +71,32 @@ public class GUIController implements Observer{
         GUIHealth.appendText(String.valueOf(player.getCurrentHealth()));
     }
 
-    private void showMana() {
-
+    private void showMana(TheKnight player) {
+        GUIMana.clear();
+        GUIMana.appendText(String.valueOf(player.getCurrentMana()));
     }
 
-    private void showArmor() {
-
+    private void showArmor(TheKnight player) {
+        GUIArmor.clear();
+        GUIArmor.appendText(String.valueOf(player.getArmor()));
     }
 
-    private void showDamage() {
-
+    private void showDamage(TheKnight player) {
+        GUIAttack.clear();
+        GUIAttack.appendText(String.valueOf(player.getDamage()));
     }
 
-    private void showGold() {
+    private void showGold(TheKnight player) {
+        GUIGold.clear();
+        GUIGold.appendText(String.valueOf(player.getGoldHeld()));
     }
 
     @Override
     public void updateStatus() {
         showHealth(player);
+        showMana(player);
+        showArmor(player);
+        showDamage(player);
+        showGold(player);
     }
 }

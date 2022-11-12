@@ -25,7 +25,11 @@ public class Commands {
                 return player.presentKnightStatusExploration();
             }
             case "testobserver" -> { player.setCurrentHealth(player.getCurrentHealth()-5);
-                return String.valueOf(player.getCurrentHealth());}
+                                    player.setCurrentMana(player.getCurrentMana()-5);
+                                    player.setDamage(player.getDamage()-1);
+                                    player.setArmor(player.getArmor()-1);
+                                    player.setGoldHeld(player.getGoldHeld()-5);
+                                    return String.valueOf(player.getCurrentHealth());}
                 //case "loot" -> Item.attemptPickup();
                 //case "showinventory" -> TheKnight.printInventoryContent();
                 //case "useitem" -> TheKnight.useItem(input);

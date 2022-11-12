@@ -1,8 +1,13 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.knight;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.ObservedElement;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Observer;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 
-public class TheKnight {
+import java.util.HashSet;
+import java.util.Set;
+
+public class TheKnight implements ObservedElement {
     public final int MAX_HEALTH = 200;
     protected int currentHealth;
     public final int MAX_MANA = 50;
@@ -15,9 +20,16 @@ public class TheKnight {
     protected Coordinates position;
     protected boolean isDead = false;
 
+    public Set<Observer> listOfObservers = new HashSet<Observer>();
+
 
     public int getCurrentHealth() {
         return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+        notifyObserver();
     }
 
     public int getCurrentMana() {
@@ -102,4 +114,16 @@ public class TheKnight {
 
     private void validateMove(int tmpHorizontal, int tmpVertical) {
     }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listOfObservers.add(observer);
+    }
+
+    private void notifyObserver() {
+        for(Observer observer : listOfObservers) {
+            observer.updateStatus();
+        }
+    }
+
 }

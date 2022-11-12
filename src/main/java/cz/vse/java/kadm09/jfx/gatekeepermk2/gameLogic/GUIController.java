@@ -10,7 +10,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class GUIController {
+public class GUIController implements Observer{
     public TextArea GUIHealth;
     public TextArea GUIMana;
     public TextArea GUIArmor;
@@ -31,9 +31,10 @@ public class GUIController {
     @FXML
     private void initialize (){
 
+        player.registerObserver(this);
 
         healthLabel.appendText("HEALTH:");
-        //showHealth();
+        showHealth(player);
         manaLabel.appendText("MANA:");
         showMana();
 
@@ -65,9 +66,10 @@ public class GUIController {
 
     }
 
-       /* private void showHealth(TheKnight player) {
+        private void showHealth(TheKnight player) {
+        GUIHealth.clear();
         GUIHealth.appendText(String.valueOf(player.getCurrentHealth()));
-    }*/
+    }
 
     private void showMana() {
 
@@ -83,5 +85,9 @@ public class GUIController {
 
     private void showGold() {
     }
-    
+
+    @Override
+    public void updateStatus() {
+        showHealth(player);
+    }
 }

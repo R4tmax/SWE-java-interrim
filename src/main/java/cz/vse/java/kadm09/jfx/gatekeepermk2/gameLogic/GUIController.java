@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -23,9 +25,12 @@ public class GUIController {
     public TextField GUIInput;
     public SplitPane GUIOutputSplitter;
 
+    public TheKnight player = Setup.createKnight();
+    public Map gameMap = Setup.createMap();
+
     @FXML
     private void initialize (){
-        
+
 
         healthLabel.appendText("HEALTH:");
         //showHealth();
@@ -55,7 +60,8 @@ public class GUIController {
     public void acceptInput(ActionEvent actionEvent) {
         String GUIUserInput = GUIInput.getText();
         GUIInput.clear();
-        present(GUIUserInput);
+        present(Commands.commandList(GUIUserInput,player));
+
     }
 
        /* private void showHealth(TheKnight player) {

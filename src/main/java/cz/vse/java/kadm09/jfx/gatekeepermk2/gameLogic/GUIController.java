@@ -61,6 +61,7 @@ public class GUIController implements Observer{
 
     public void acceptInput(ActionEvent actionEvent) {
         String GUIUserInput = GUIInput.getText();
+        GUIOutput.appendText("> " + GUIUserInput + "\n");
         GUIInput.clear();
         present(Commands.commandList(GUIUserInput,game));
 

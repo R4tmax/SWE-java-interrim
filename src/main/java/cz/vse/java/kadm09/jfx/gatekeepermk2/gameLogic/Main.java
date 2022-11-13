@@ -39,9 +39,6 @@ public class Main extends Application {
         if (args.length > 0 && args[0].equals("cli")) {
 
             System.out.println(Setup.introMessage());
-            /*Enum <GameState> gameState = Setup.initGameState();
-            TheKnight player=Setup.createKnight();
-            Map gameMap = Setup.createMap();*/
             Game game = new Game();
             System.out.println(game.gameMap.presentPosition(game.player));
 

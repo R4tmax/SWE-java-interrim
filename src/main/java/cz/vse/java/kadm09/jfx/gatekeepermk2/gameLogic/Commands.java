@@ -1,10 +1,9 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
-import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
-import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
-
 import java.util.Scanner;
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
+
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.MOVEMENT;
 
 
 /**
@@ -63,7 +62,24 @@ public class Commands {
             } else if (game.gameState==MOVEMENT)
                 switch (input) {
                     case "north" -> {
-                        game.player.moveKnight("north",game.player,game.gameMap);
+                        game.gameState=EXPLORATION;
+                        return game.player.moveKnight("north",game.player,game.gameMap) + "\n"
+                         + game.gameMap.presentPosition(game.player);
+                    }
+                    case "south" -> {
+                        game.gameState=EXPLORATION;
+                        return game.player.moveKnight("south",game.player,game.gameMap) + "\n"
+                                + game.gameMap.presentPosition(game.player);
+                    }
+                    case "west" -> {
+                        game.gameState=EXPLORATION;
+                        return game.player.moveKnight("west",game.player,game.gameMap) + "\n"
+                                + game.gameMap.presentPosition(game.player);
+                    }
+                    case "east" -> {
+                        game.gameState=EXPLORATION;
+                        return game.player.moveKnight("east",game.player,game.gameMap) + "\n"
+                                + game.gameMap.presentPosition(game.player);
                     }
                     case "cancel" -> {
                         game.gameState=EXPLORATION;

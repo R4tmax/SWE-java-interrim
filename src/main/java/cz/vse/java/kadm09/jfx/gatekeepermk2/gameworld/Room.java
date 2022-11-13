@@ -12,12 +12,14 @@ public class Room {
     protected Monster roomEnemy;
     protected RoomType roomBehavior;
 
-    protected boolean locked;
 
-    public Room(String name, String description, Boolean locked) {
+    public Room(String name, String description, boolean isLocked, Item roomLoot, Monster roomEnemy, RoomType roomBehavior) {
         this.name = name;
         this.description = description;
-        this.locked = locked;
+        this.isLocked = isLocked;
+        this.roomLoot = roomLoot;
+        this.roomEnemy = roomEnemy;
+        this.roomBehavior = roomBehavior;
     }
 
     public String getName() {
@@ -29,7 +31,7 @@ public class Room {
     }
 
     public boolean isLocked() {
-        return locked;
+        return isLocked;
     }
 }
 

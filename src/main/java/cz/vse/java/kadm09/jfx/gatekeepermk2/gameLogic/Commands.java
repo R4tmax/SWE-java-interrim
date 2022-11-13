@@ -16,37 +16,37 @@ import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
  */
 public class Commands {
 
-    public static String processInput (TheKnight player, Map gameMap, GameState gameState) {
+    public static String processInput (Game game) {
         Scanner input = new Scanner(System.in);
         System.out.println(" > ");
         String enteredText = input.nextLine();
-        return commandList(enteredText.toLowerCase(), player, gameMap, gameState);
+        return commandList(enteredText.toLowerCase(), game);
     }
 
-    public static String commandList (String input, TheKnight player,Map gameMap, GameState gameState ) {
+    public static String commandList (String input, Game game) {
 
-        if (gameState == EXPLORATION) {
+        if (game.gameState == EXPLORATION) {
                 switch (input) {
                     case "help" -> {
-                        return player.presentCommandListExploration();
+                        return game.player.presentCommandListExploration();
                     }
                     case "move" -> {
-                        gameState=MOVEMENT;
+                        game.gameState=MOVEMENT;
                         return "In which direction do you want to move?";
                     }
                     case "lookaround" -> {
-                        return gameMap.presentPosition(player);
+                        return game.gameMap.presentPosition(game.player);
                     }
                     case "status" -> {
-                        return player.presentKnightStatusExploration();
+                        return game.player.presentKnightStatusExploration();
                     }
                     case "testobserver" -> {
-                        player.setCurrentHealth(player.getCurrentHealth() - 5);
-                        player.setCurrentMana(player.getCurrentMana() - 5);
-                        player.setDamage(player.getDamage() - 1);
-                        player.setArmor(player.getArmor() - 1);
-                        player.setGoldHeld(player.getGoldHeld() - 5);
-                        return String.valueOf(player.getCurrentHealth());
+                        game.player.setCurrentHealth(game.player.getCurrentHealth() - 5);
+                        game.player.setCurrentMana(game.player.getCurrentMana() - 5);
+                        game.player.setDamage(game.player.getDamage() - 1);
+                        game.player.setArmor(game.player.getArmor() - 1);
+                        game.player.setGoldHeld(game.player.getGoldHeld() - 5);
+                        return String.valueOf(game.player.getCurrentHealth());
                     }
                     //case "loot" -> Item.attemptPickup();
                     //case "showinventory" -> TheKnight.printInventoryContent();
@@ -60,13 +60,13 @@ public class Commands {
                         return ("Unknown command, use HELP command if you are lost.");
                     }
                 }
-            } else if (gameState==MOVEMENT)
+            } else if (game.gameState==MOVEMENT)
                 switch (input) {
                     case "north" -> {
-                        player.moveKnight("north",player,gameMap);
+                        game.player.moveKnight("north",game.player,game.gameMap);
                     }
                     case "cancel" -> {
-                        gameState=EXPLORATION;
+                        game.gameState=EXPLORATION;
                         return "Cancelling move command.";
                     }
                     default -> {

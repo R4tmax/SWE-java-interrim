@@ -25,32 +25,29 @@ public class GUIController implements Observer{
     public TextField GUIInput;
     public SplitPane GUIOutputSplitter;
 
-    public TheKnight player = Setup.createKnight();
-    public Map gameMap = Setup.createMap();
-
-    public GameState gameState = Setup.initGameState();
+    public Game game = new Game();
 
     @FXML
     private void initialize (){
 
         present(Setup.introMessage());
-        player.registerObserver(this);
+        game.player.registerObserver(this);
 
         healthLabel.appendText("HEALTH:");
-        showHealth(player);
+        showHealth(game.player);
         manaLabel.appendText("MANA:");
-        showMana(player);
+        showMana(game.player);
 
         armorLabel.appendText("ARMOR");
-        showArmor(player);
+        showArmor(game.player);
 
         damageLabel.appendText("DAMAGE");
-        showDamage(player);
+        showDamage(game.player);
 
         goldLabel.appendText("GOLD HELD");
-        showGold(player);
+        showGold(game.player);
 
-        present(gameMap.presentPosition(player));
+        present(game.gameMap.presentPosition(game.player));
         Platform.runLater(() -> GUIInput.requestFocus());
     }
 
@@ -65,7 +62,7 @@ public class GUIController implements Observer{
     public void acceptInput(ActionEvent actionEvent) {
         String GUIUserInput = GUIInput.getText();
         GUIInput.clear();
-        present(Commands.commandList(GUIUserInput,player, gameMap,gameState));
+        present(Commands.commandList(GUIUserInput,game));
 
     }
 
@@ -96,10 +93,10 @@ public class GUIController implements Observer{
 
     @Override
     public void updateStatus() {
-        showHealth(player);
-        showMana(player);
-        showArmor(player);
-        showDamage(player);
-        showGold(player);
+        showHealth(game.player);
+        showMana(game.player);
+        showArmor(game.player);
+        showDamage(game.player);
+        showGold(game.player);
     }
 }

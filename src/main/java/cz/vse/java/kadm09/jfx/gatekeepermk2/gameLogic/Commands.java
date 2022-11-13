@@ -25,8 +25,7 @@ public class Commands {
 
     public static String commandList (String input, TheKnight player,Map gameMap, GameState gameState ) {
 
-        switch (gameState) {
-            case EXPLORATION -> {
+        if (gameState == EXPLORATION) {
                 switch (input) {
                     case "help" -> {
                         return player.presentCommandListExploration();
@@ -61,8 +60,7 @@ public class Commands {
                         return ("Unknown command, use HELP command if you are lost.");
                     }
                 }
-            }
-            case MOVEMENT -> {
+            } else if (gameState==MOVEMENT)
                 switch (input) {
                     case "north" -> {
                         player.moveKnight("north",player,gameMap);
@@ -76,10 +74,6 @@ public class Commands {
                                 "cancel to terminate command";
                     }
                 }
-
-            }
-            default -> System.exit(404);
-        }
         return "";
     }
 

@@ -4,9 +4,12 @@ public class Room {
     protected String name;
     protected String description;
 
-    public Room(String name, String description) {
+    protected boolean locked;
+
+    public Room(String name, String description, Boolean locked) {
         this.name = name;
         this.description = description;
+        this.locked = locked;
     }
 
     public String getName() {
@@ -15,6 +18,10 @@ public class Room {
 
     public String getDescription() {
         return description;
+    }
+
+    public boolean isLocked() {
+        return locked;
     }
 }
 

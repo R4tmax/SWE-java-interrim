@@ -4,6 +4,8 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 import java.util.Scanner;
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
+
 
 /**
  * @author Martin Kadlec
@@ -29,7 +31,10 @@ public class Commands {
                     case "help" -> {
                         return player.presentCommandListExploration();
                     }
-                    case "move" -> player.moveKnight(input, player, gameMap);
+                    case "move" -> {
+                        gameState=MOVEMENT;
+                        return "In which direction do you want to move?";
+                    }
                     case "lookaround" -> {
                         return gameMap.presentPosition(player);
                     }
@@ -58,6 +63,19 @@ public class Commands {
                 }
             }
             case MOVEMENT -> {
+                switch (input) {
+                    case "north" -> {
+                        player.moveKnight("north",player,gameMap);
+                    }
+                    case "cancel" -> {
+                        gameState=EXPLORATION;
+                        return "Cancelling move command.";
+                    }
+                    default -> {
+                        return "Unknown direction! Use compass directions or type" +
+                                "cancel to terminate command";
+                    }
+                }
 
             }
             default -> System.exit(404);

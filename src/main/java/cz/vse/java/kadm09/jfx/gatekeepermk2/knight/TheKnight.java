@@ -151,23 +151,38 @@ public class TheKnight implements ObservedElement {
         if (currentMana > MAX_MANA) currentMana = MAX_MANA;
     }
 
-    public void moveKnight (String direction, TheKnight player, Map gameMap) {
+    public String moveKnight (String direction, TheKnight player, Map gameMap) {
         int tmpHorizontal = player.position.horizontal;
         int tmpVertical = player.position.vertical;
-
-        direction = direction.replaceAll("\\s","");
             switch (direction.toLowerCase()) {
                 case "north" -> player.position.horizontal -= 1;
                 case "west" -> player.position.vertical -= 1;
                 case "east" -> player.position.vertical += 1;
                 case "south" -> player.position.horizontal += 1;
-                default -> System.out.println("Unknown direction");
+                default -> System.out.println("Direction processing ERROR.");
             }
 
+      return validateMove(tmpHorizontal,tmpVertical, player, gameMap);
 
     }
 
-    private void validateMove(int tmpHorizontal, int tmpVertical) {
+    private String validateMove(int tmpHorizontal, int tmpVertical, TheKnight player, Map gameMap) {
+        try {
+            if (gameMap.getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).isLocked()) {
+                player.position.horizontal = tmpHorizontal;
+                player.position.vertical = tmpVertical;
+                return "You get a sinking feeling, like acid in your stomach!" + "\n" +
+                        "Perhaps you should not be here yet? Explore elsewhere!";
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            player.position.horizontal = tmpHorizontal;
+            player.position.vertical = tmpVertical;
+            return "You are leaving the game area, try a different direction!";
+        } catch (Exception e){
+            return "Unexpected exception!";
+        }
+
+        return "";
     }
 
     /*public static String presentInventoryContent () {

@@ -2,9 +2,7 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import java.util.Scanner;
 
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.MOVEMENT;
-
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
 
 /**
  * @author Martin Kadlec

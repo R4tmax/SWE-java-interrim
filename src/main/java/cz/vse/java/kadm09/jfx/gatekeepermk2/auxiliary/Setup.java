@@ -1,5 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.Coordinates;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
@@ -10,12 +11,8 @@ public class Setup {
 
     private static final Date todayIs = new Date();
 
-    public static void initGame () {
-        Map gameMap = new Map();
-        gameMap.fillMap();
-        TheKnight player = new TheKnight(200,50,2,15,250,new Coordinates(4,2),false);
-        //System.out.println(gameMap.printPosition(player));
-
+    public static GameState initGameState () {
+        return GameState.EXPLORATION;
     }
 
     public static Map createMap(){
@@ -25,8 +22,7 @@ public class Setup {
     }
 
     public static TheKnight createKnight(){
-        TheKnight player = new TheKnight(200,50,2,15,250,new Coordinates(4,2),false);
-        return player;
+        return new TheKnight(200,50,2,15,250,new Coordinates(4,2),false);
     }
 
     public static String introMessage () {

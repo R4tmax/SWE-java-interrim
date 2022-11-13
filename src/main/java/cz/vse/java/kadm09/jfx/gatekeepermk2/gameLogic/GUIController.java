@@ -28,6 +28,8 @@ public class GUIController implements Observer{
     public TheKnight player = Setup.createKnight();
     public Map gameMap = Setup.createMap();
 
+    public GameState gameState = Setup.initGameState();
+
     @FXML
     private void initialize (){
 
@@ -63,7 +65,7 @@ public class GUIController implements Observer{
     public void acceptInput(ActionEvent actionEvent) {
         String GUIUserInput = GUIInput.getText();
         GUIInput.clear();
-        present(Commands.commandList(GUIUserInput,player, gameMap));
+        present(Commands.commandList(GUIUserInput,player, gameMap,gameState));
 
     }
 

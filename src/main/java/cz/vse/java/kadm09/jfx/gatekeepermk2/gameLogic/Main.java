@@ -39,13 +39,13 @@ public class Main extends Application {
         if (args.length > 0 && args[0].equals("cli")) {
 
             System.out.println(Setup.introMessage());
-            //Setup.initGame();
+            GameState gameState = Setup.initGameState();
             TheKnight player=Setup.createKnight();
             Map gameMap = Setup.createMap();
             System.out.println(gameMap.presentPosition(player));
 
             while (true) {
-                System.out.println(Commands.processInput(player,gameMap));
+                System.out.println(Commands.processInput(player,gameMap,gameState));
 
                 if (player.isDead()) exit(0);
             }

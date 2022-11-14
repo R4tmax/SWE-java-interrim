@@ -35,6 +35,9 @@ public enum GameState {
      * Player is shopping for weapon upgrades
      */
     HUNTSMAN,
+    /**
+     * Game expects spelllist input
+     */
     SPELLCAST, //todo: potentially problematic in relation to combat, might need to rework string processing logic for this command
     ENDGAME
 

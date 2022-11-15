@@ -45,12 +45,15 @@ public class Commands {
                         game.player.setGoldHeld(game.player.getGoldHeld() - 5);
                         return String.valueOf(game.player.getCurrentHealth());
                     }
-                    //case "loot" -> Item.attemptPickup();
-                    //case "showinventory" -> TheKnight.printInventoryContent();
-                    //case "useitem" -> TheKnight.useItem(input);
-                    //case "spelllist" -> Spells.printSpelllist();
-                    //case "cast" -> Spells.castSpells(input);
-                    //case "interact" -> Interactions.attemptInteraction(input);
+                    case "loot" -> {
+                        return game.player.attemptPickup(game.player, game.gameMap);
+                    }
+                        //case "showinventory" -> TheKnight.printInventoryContent();
+                        //case "useitem" -> TheKnight.useItem(input);
+                        //case "spelllist" -> Spells.printSpelllist();
+                        //case "cast" -> Spells.castSpells(input);
+                        //case "interact" -> Interactions.attemptInteraction(input);
+
 
                     case "quitgame" -> System.exit(0);
                     default -> {

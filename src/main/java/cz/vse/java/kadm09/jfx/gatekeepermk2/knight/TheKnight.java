@@ -185,6 +185,14 @@ public class TheKnight implements ObservedElement {
         return "";
     }
 
+    public String attemptPickup (TheKnight player, Map gameMap) {
+        if (gameMap.getCurrentPosition(player.position.horizontal,player.position.vertical).getRoomLoot() == null) {
+            return "There is nothing to pickup!";
+            //else return gameMap.getCurrentPosition(player.position.horizontal,player.position.vertical).getRoomLoot().pickUpEffect();
+        }
+        return "dry runs";
+    }
+
     /*public static String presentInventoryContent () {
         StringBuilder toPresent = new StringBuilder("Currently held: \n");
         for (Consumable item : inventory ) {

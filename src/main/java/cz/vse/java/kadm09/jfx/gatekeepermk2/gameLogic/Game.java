@@ -16,4 +16,12 @@ public class Game {
         this.player = Setup.createKnight();
         this.gameMap = Setup.createMap();
     }
+
+    public TheKnight getPlayer() {
+        return player;
+    }
+
+    public Map getGameMap() {
+        return gameMap;
+    }
 }

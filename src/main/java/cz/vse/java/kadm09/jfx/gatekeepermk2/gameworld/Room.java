@@ -33,6 +33,14 @@ public class Room {
     public boolean isLocked() {
         return isLocked;
     }
+
+    public Item getRoomLoot() {
+        return roomLoot;
+    }
+
+    public void setRoomLoot(Item roomLoot) {
+        this.roomLoot = roomLoot;
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.items;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
+
 public class Consumable extends Item implements PickupHandling {
     protected ConsumableType consumableType;
 
@@ -22,7 +24,8 @@ public class Consumable extends Item implements PickupHandling {
     }
 
     @Override
-    public void pickUpEffect() {
+    public String pickUpEffect(Game game) {
 
+        return "Not yet implemented";
     }
 }

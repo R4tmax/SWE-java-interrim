@@ -46,7 +46,7 @@ public class Commands {
                         return String.valueOf(game.player.getCurrentHealth());
                     }
                     case "loot" -> {
-                        return game.player.attemptPickup(game.player, game.gameMap);
+                        return game.player.attemptPickup(game);
                     }
                         //case "showinventory" -> TheKnight.printInventoryContent();
                         //case "useitem" -> TheKnight.useItem(input);
@@ -64,22 +64,22 @@ public class Commands {
                 switch (input) {
                     case "north" -> {
                         game.gameState=EXPLORATION;
-                        return game.player.moveKnight("north",game.player,game.gameMap) + "\n"
+                        return game.player.moveKnight("north",game) + "\n"
                          + game.gameMap.presentPosition(game.player);
                     }
                     case "south" -> {
                         game.gameState=EXPLORATION;
-                        return game.player.moveKnight("south",game.player,game.gameMap) + "\n"
+                        return game.player.moveKnight("south",game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "west" -> {
                         game.gameState=EXPLORATION;
-                        return game.player.moveKnight("west",game.player,game.gameMap) + "\n"
+                        return game.player.moveKnight("west",game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "east" -> {
                         game.gameState=EXPLORATION;
-                        return game.player.moveKnight("east",game.player,game.gameMap) + "\n"
+                        return game.player.moveKnight("east",game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "cancel" -> {

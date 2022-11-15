@@ -1,5 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.knight;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.ObservedElement;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Observer;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
@@ -151,18 +152,18 @@ public class TheKnight implements ObservedElement {
         if (currentMana > MAX_MANA) currentMana = MAX_MANA;
     }
 
-    public String moveKnight (String direction, TheKnight player, Map gameMap) {
-        int tmpHorizontal = player.position.horizontal;
-        int tmpVertical = player.position.vertical;
+    public String moveKnight (String direction, Game game) {
+        int tmpHorizontal = game.getPlayer().position.horizontal;
+        int tmpVertical = game.getPlayer().position.vertical;
             switch (direction.toLowerCase()) {
-                case "north" -> player.position.horizontal -= 1;
-                case "west" -> player.position.vertical -= 1;
-                case "east" -> player.position.vertical += 1;
-                case "south" -> player.position.horizontal += 1;
+                case "north" -> game.getPlayer().position.horizontal -= 1;
+                case "west" -> game.getPlayer().position.vertical -= 1;
+                case "east" -> game.getPlayer().position.vertical += 1;
+                case "south" -> game.getPlayer().position.horizontal += 1;
                 default -> System.out.println("Direction processing ERROR.");
             }
 
-      return validateMove(tmpHorizontal,tmpVertical, player, gameMap);
+      return validateMove(tmpHorizontal,tmpVertical, game.getPlayer(), game.getGameMap());
 
     }
 
@@ -185,8 +186,8 @@ public class TheKnight implements ObservedElement {
         return "";
     }
 
-    public String attemptPickup (TheKnight player, Map gameMap) {
-        if (gameMap.getCurrentPosition(player.position.horizontal,player.position.vertical).getRoomLoot() == null) {
+    public String attemptPickup (Game game) {
+        if (game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot() == null) {
             return "There is nothing to pickup!";
             //else return gameMap.getCurrentPosition(player.position.horizontal,player.position.vertical).getRoomLoot().pickUpEffect();
         }

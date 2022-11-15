@@ -18,7 +18,8 @@ public enum GameState {
      * Game expects directional input for the move command
      * @see cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight#moveKnight(String, TheKnight, Map)
      */
-    MOVEMENT
+    MOVEMENT,
+    COMBAT
 
 
 

@@ -26,8 +26,8 @@ public class MoneyLoot extends Item implements PickupHandling{
     @Override
     public String pickUpEffect(Game game) {
         game.getPlayer().setGoldHeld(game.getPlayer().getGoldHeld()+ this.effectiveValue);
-        this.pickUpMessage();
+        String remember = this.pickUpMessage();
         game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(),game.getPlayer().getPosition().getVertical()).setRoomLoot(null);
-        return "You now have: " + game.getPlayer().getGoldHeld() + " gold pieces!";
+        return remember + "\n" + "You now have: " + game.getPlayer().getGoldHeld() + " gold pieces!";
     }
 }

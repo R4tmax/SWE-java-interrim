@@ -48,11 +48,13 @@ public class Commands {
                     case "loot" -> {
                         return game.player.attemptPickup(game);
                     }
-                        //case "showinventory" -> TheKnight.printInventoryContent();
+                    case "showinventory" -> {
+                        return game.player.presentInventoryContent();
                         //case "useitem" -> TheKnight.useItem(input);
                         //case "spelllist" -> Spells.printSpelllist();
                         //case "cast" -> Spells.castSpells(input);
                         //case "interact" -> Interactions.attemptInteraction(input);
+                    }
 
 
                     case "quitgame" -> System.exit(0);

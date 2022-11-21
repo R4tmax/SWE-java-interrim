@@ -195,14 +195,15 @@ public class TheKnight implements ObservedElement {
         else return game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot().pickUpEffect(game);
     }
 
-    /*public static String presentInventoryContent () {
+    public String presentInventoryContent () {
         StringBuilder toPresent = new StringBuilder("Currently held: \n");
-        for (Consumable item : inventory ) {
+        for (Consumable item : this.inventory ) {
             toPresent.append(item.getName());
+            toPresent.append("\n");
         }
 
         return toPresent.toString();
-    }*/
+    }
 
     @Override
     public void registerObserver(Observer observer) {

@@ -141,7 +141,7 @@ public class TheKnight implements ObservedElement {
      * below zero checks are handled separately.
      */
     public void preventOverheal () {
-        if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
+        if (this.currentHealth > MAX_HEALTH) this.setCurrentHealth(MAX_HEALTH);
     }
 
 
@@ -151,7 +151,7 @@ public class TheKnight implements ObservedElement {
      * below zero checks are handled separately.
      */
     public void preventOvercast() {
-        if (currentMana > MAX_MANA) currentMana = MAX_MANA;
+        if (this.currentMana > MAX_MANA) this.setCurrentMana(MAX_MANA);
     }
 
     public String moveKnight (String direction, Game game) {

@@ -50,11 +50,14 @@ public class Commands {
                     }
                     case "showinventory" -> {
                         return game.player.presentInventoryContent();
-                        //case "useitem" -> TheKnight.useItem(input);
+                    }
+                    case "useitem" -> {
+                        game.gameState=INVENTORY;
+                        return "Which item do you want to use?";
+                    }
                         //case "spelllist" -> Spells.printSpelllist();
                         //case "cast" -> Spells.castSpells(input);
                         //case "interact" -> Interactions.attemptInteraction(input);
-                    }
 
 
                     case "quitgame" -> System.exit(0);
@@ -103,6 +106,7 @@ public class Commands {
                     return "Cancelling move command."; //TODO: Improve cancelling logic to prevent incorrectly handling states
                 }
                 default -> {
+                    game.gameState = EXPLORATION; //TODO: -//-
                     return game.player.useItem(game,input);
                 }
             }

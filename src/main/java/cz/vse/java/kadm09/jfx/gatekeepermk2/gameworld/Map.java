@@ -25,6 +25,8 @@ public class Map {
 
     public void fillMap () {
 
+        //TODO: rewrite boss room texts
+        //TODO: reintroduce gameStateUpdater to set new descriptions to rooms.
         //First row - Northernmost
         gameArea[0][0] = new Room("Northwestern rocky hills", """
                 You arrive at the small hill overseeing the forest underneath, due south.

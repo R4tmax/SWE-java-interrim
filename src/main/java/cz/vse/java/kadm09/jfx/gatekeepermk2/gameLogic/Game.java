@@ -10,7 +10,8 @@ public class Game {
     protected TheKnight player;
     protected Map gameMap;
 
-    protected int turnCounter = 0;
+    //protected int turnCounter = 0;
+    protected boolean introMessageFlag = true;
 
 
     public Game() {
@@ -26,6 +27,4 @@ public class Game {
     public Map getGameMap() {
         return gameMap;
     }
-
-
 }

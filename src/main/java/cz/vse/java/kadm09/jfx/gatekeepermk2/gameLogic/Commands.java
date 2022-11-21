@@ -22,10 +22,6 @@ public class Commands {
 
     public static String commandList (String input, Game game) {
 
-        if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null) {
-            game.gameState = COMBAT;
-        }
-
         if (game.gameState == EXPLORATION) {
             switch (input) {
                 case "help" -> {
@@ -115,17 +111,15 @@ public class Commands {
                 }
             }
         } else if (game.gameState == COMBAT) {
-            if (game.turnCounter % 2 == 0) {
-                switch (input) {
-
-                    default -> {
-                        return "placeholder";
-                    }
+            switch (input) {
+                case "attack" -> {
+                    String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
+                    return "attempted strike TBD" + attackResolution;
                 }
-            } else {
-                game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy().attackPattern(game);
+                default -> {
+                    return "Unknown command";
+                }
             }
-
         }
         return "";
     }

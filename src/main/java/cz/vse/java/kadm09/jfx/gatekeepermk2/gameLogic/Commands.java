@@ -62,30 +62,30 @@ public class Commands {
                         return ("Unknown command, use HELP command if you are lost.");
                     }
                 }
-            } else if (game.gameState==MOVEMENT)
+            } else if (game.gameState==MOVEMENT) {
                 switch (input) {
                     case "north" -> {
-                        game.gameState=EXPLORATION;
-                        return game.player.moveKnight("north",game) + "\n"
-                         + game.gameMap.presentPosition(game.player);
+                        game.gameState = EXPLORATION;
+                        return game.player.moveKnight("north", game) + "\n"
+                                + game.gameMap.presentPosition(game.player);
                     }
                     case "south" -> {
-                        game.gameState=EXPLORATION;
-                        return game.player.moveKnight("south",game) + "\n"
+                        game.gameState = EXPLORATION;
+                        return game.player.moveKnight("south", game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "west" -> {
-                        game.gameState=EXPLORATION;
-                        return game.player.moveKnight("west",game) + "\n"
+                        game.gameState = EXPLORATION;
+                        return game.player.moveKnight("west", game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "east" -> {
-                        game.gameState=EXPLORATION;
-                        return game.player.moveKnight("east",game) + "\n"
+                        game.gameState = EXPLORATION;
+                        return game.player.moveKnight("east", game) + "\n"
                                 + game.gameMap.presentPosition(game.player);
                     }
                     case "cancel" -> {
-                        game.gameState=EXPLORATION;
+                        game.gameState = EXPLORATION;
                         return "Cancelling move command.";
                     }
                     default -> {
@@ -93,6 +93,20 @@ public class Commands {
                                 "cancel to terminate command";
                     }
                 }
+        } else if (game.gameState == INVENTORY) {
+            switch (input) {
+                case "showinventory" -> {
+                    return game.player.presentInventoryContent();
+                }
+                case "cancel"  -> {
+                    game.gameState = EXPLORATION;
+                    return "Cancelling move command."; //TODO: Improve cancelling logic to prevent incorrectly handling states
+                }
+                default -> {
+                    return game.player.useItem(game,input);
+                }
+            }
+        }
         return "";
     }
 

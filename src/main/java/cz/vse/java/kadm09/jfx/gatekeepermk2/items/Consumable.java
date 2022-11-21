@@ -19,6 +19,10 @@ public class Consumable extends Item implements PickupHandling {
         this.consumableType = consumableType;
     }
 
+    public ConsumableType getConsumableType() {
+        return consumableType;
+    }
+
     @Override
     public String pickUpMessage() {
         return "You have picked up " + this.name + "!";
@@ -34,8 +38,30 @@ public class Consumable extends Item implements PickupHandling {
             return remember;
         } else return "Inventory full";
 
+    }
 
-
+    public String executeConsumableEffect (Game game, ConsumableType type , int value) {
+        switch (type) {
+            case HEALTH_FILL -> {
+                game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth() + value);
+                game.getPlayer().preventOverheal();
+                return "You have been healed for: " + value;
+            }
+            case MANA_FILL -> {
+                game.getPlayer().setCurrentMana(game.getPlayer().getCurrentMana() + value);
+                game.getPlayer().preventOvercast();
+                return "Your mana pool has been replenished by: " + value;
+            }
+            case DAMAGE_BOOST -> {
+                game.getPlayer().setDamage(game.getPlayer().getDamage() + value);
+                return "Your damage has been increased by: " + value;
+            }
+            case ARMOR_BOOST -> {
+                game.getPlayer().setArmor(game.getPlayer().getArmor() + value);
+                return "Your armor level has been increased by " + value;
+            }
+        }
+        return "";
     }
 
     @Override

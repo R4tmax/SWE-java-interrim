@@ -195,6 +195,21 @@ public class TheKnight implements ObservedElement {
         else return game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot().pickUpEffect(game);
     }
 
+    public String useItem (Game game,String input) {
+
+        String toUse = input.toLowerCase().replaceAll("\\s","");
+
+        for (Consumable consumable : this.inventory) {
+            if (toUse.equals(consumable.getName().toLowerCase().replaceAll("\\s",""))) {
+                String remember = consumable.executeConsumableEffect(game,consumable.getConsumableType(), consumable.getEffectiveValue());
+                this.inventory.remove(consumable);
+                return remember;
+            }
+        }
+        return "No such item was found";
+
+    }
+
     public String presentInventoryContent () {
         StringBuilder toPresent = new StringBuilder("Currently held: \n");
         for (Consumable item : this.inventory ) {

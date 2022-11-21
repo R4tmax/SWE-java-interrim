@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.enemies;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
+
 public interface HostileActions {
     /**
      * Initial declaration for the initialMessage
@@ -8,14 +10,12 @@ public interface HostileActions {
     String initialMessage();
 
     /**
-     *
      * Initial declaration for the attackPattern
      * method of the interface
      *
-     * @param damageValue Integer value representing calculated
-     *                   base damage modifiers passed by the combat Class
+     * @return
      */
-    void attackPattern(int damageValue);
+    String attackPattern(Game game);
 
 
 

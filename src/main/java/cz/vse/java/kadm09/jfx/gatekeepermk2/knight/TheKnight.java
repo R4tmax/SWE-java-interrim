@@ -144,6 +144,10 @@ public class TheKnight implements ObservedElement {
         if (this.currentHealth > MAX_HEALTH) this.setCurrentHealth(MAX_HEALTH);
     }
 
+    public int accountForArmor (int damageValue) {
+        return Math.max(damageValue, 1);
+    }
+
 
     /**
      * This function simply assures that currentMana

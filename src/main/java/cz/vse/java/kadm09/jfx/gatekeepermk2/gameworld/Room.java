@@ -41,6 +41,14 @@ public class Room {
     public void setRoomLoot(Item roomLoot) {
         this.roomLoot = roomLoot;
     }
+
+    public Monster getRoomEnemy() {
+        return roomEnemy;
+    }
+
+    public void setRoomEnemy(Monster roomEnemy) {
+        this.roomEnemy = roomEnemy;
+    }
 }
 
 

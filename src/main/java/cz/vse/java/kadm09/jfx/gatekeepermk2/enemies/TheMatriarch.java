@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.enemies;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
+
 public class TheMatriarch extends Monster implements HostileActions {
 
 
@@ -13,7 +15,7 @@ public class TheMatriarch extends Monster implements HostileActions {
     }
 
     @Override
-    public void attackPattern(int damageValue) {
-
+    public String attackPattern(Game game) {
+        return null;
     }
 }

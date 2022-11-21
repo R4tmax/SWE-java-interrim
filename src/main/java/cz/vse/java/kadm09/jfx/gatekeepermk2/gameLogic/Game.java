@@ -10,6 +10,8 @@ public class Game {
     protected TheKnight player;
     protected Map gameMap;
 
+    protected int turnCounter = 0;
+
 
     public Game() {
         this.gameState = Setup.initGameState();
@@ -24,4 +26,6 @@ public class Game {
     public Map getGameMap() {
         return gameMap;
     }
+
+
 }

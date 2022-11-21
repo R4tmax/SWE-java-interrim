@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.enemies;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
+
 public class TheHag extends Monster implements HostileActions {
     public TheHag(String name, int health, int damage, int goldDrop) {
         super(name, health, damage, goldDrop);
@@ -17,7 +19,12 @@ public class TheHag extends Monster implements HostileActions {
     }
 
     @Override
-    public void attackPattern(int damageValue) {
-
+    public String attackPattern(Game game) {
+        int damageDealt = this.damage - game.getPlayer().getArmor();
+        damageDealt = game.getPlayer().accountForArmor(damageDealt);
+        game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
+        game.getPlayer().setCurrentMana(game.getPlayer().getCurrentMana() - damageDealt);
+        return "You were hit by " + this.name + "for " + damageDealt + " points of damage " + "\n" +
+                "Hag deals the same damage to your health as well!";
     }
 }

@@ -4,7 +4,9 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.ObservedElement;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Observer;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Consumable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,7 +33,7 @@ public class TheKnight implements ObservedElement {
     protected int armor;
     protected int damage;
     protected int goldHeld;
-    //public final ArrayList<Consumable> inventory = new ArrayList<>();
+    public final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int INVENTORY_CAP = 5;
     protected Coordinates position;
     protected boolean isDead = false;

@@ -87,7 +87,7 @@ public class Commands {
                         return "Cancelling move command.";
                     }
                     default -> {
-                        return "Unknown direction! Use compass directions or type" +
+                        return "Unknown direction! Use compass directions or type " +
                                 "cancel to terminate command";
                     }
                 }

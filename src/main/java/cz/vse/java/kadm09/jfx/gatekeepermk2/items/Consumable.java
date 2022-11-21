@@ -1,6 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.items;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 public class Consumable extends Item implements PickupHandling {
     protected ConsumableType consumableType;
@@ -20,12 +21,30 @@ public class Consumable extends Item implements PickupHandling {
 
     @Override
     public String pickUpMessage() {
-        return null;
+        return "You have picked up " + this.name + "!";
     }
 
     @Override
     public String pickUpEffect(Game game) {
 
-        return "Not yet implemented";
+        if (game.getPlayer().inventory.size() < TheKnight.INVENTORY_CAP) {
+            game.getPlayer().inventory.add(this);
+            String remember = this.pickUpMessage();
+            game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(),game.getPlayer().getPosition().getVertical()).setRoomLoot(null);
+            return remember;
+        } else return "Inventory full";
+
+
+
     }
+
+    @Override
+    public String toString() {
+        return "Consumable{" +
+                "itemType=" + consumableType +
+                ", name='" + name + '\'' +
+                ", effectiveValue=" + effectiveValue +
+                '}';
+    }
+
 }

@@ -224,6 +224,37 @@ public class TheKnight implements ObservedElement {
         return toPresent.toString();
     }
 
+    public String presentSpelllist() {
+        return """
+                You have following spells at your disposal:
+                => LIGHTNING TOUCH - Deals somewhat minor damage, but is very cheap to cast.
+                => HEAL - heals you for a moderate amount for a modest mana cost
+                => SMITE - both heals you and damages your opponent, slightly more expensive than the heal
+                => LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely!!
+                => PRAYER OF STRENGTH - Improves your damage for the rest of the game, but it is rather mana taxing. Requires concentration!
+                => PRAYER OF RESOLVE - Improves your armor for the rest of the game, but it is rather mana taxing. Requires concentration!
+                                
+                Take heed, knight, some spells should not be attempted during combat!
+                """;
+    }
+
+    public String lightningTouch(Game game) {
+        int manaCost = 5;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        if (game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy() == null) {
+            return "No target!";
+        }
+
+
+        this.setCurrentMana(this.getCurrentMana() - 100);
+        game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().setHealth(game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().getHealth() - 100);
+        return "Your enemy took a nice hit!";
+    }
+
+
     @Override
     public void registerObserver(Observer observer) {
         listOfObservers.add(observer);
@@ -234,5 +265,6 @@ public class TheKnight implements ObservedElement {
             observer.updateStatus();
         }
     }
+
 
 }

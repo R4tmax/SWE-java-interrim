@@ -37,14 +37,6 @@ public class Commands {
                 case "status" -> {
                     return game.player.presentKnightStatusExploration();
                 }
-                case "testobserver" -> {
-                    game.player.setCurrentHealth(game.player.getCurrentHealth() - 5);
-                    game.player.setCurrentMana(game.player.getCurrentMana() - 5);
-                    game.player.setDamage(game.player.getDamage() - 1);
-                    game.player.setArmor(game.player.getArmor() - 1);
-                    game.player.setGoldHeld(game.player.getGoldHeld() - 5);
-                    return String.valueOf(game.player.getCurrentHealth());
-                }
                 case "loot" -> {
                     return game.player.attemptPickup(game);
                 }
@@ -55,9 +47,15 @@ public class Commands {
                     game.gameState = INVENTORY;
                     return "Which item do you want to use?";
                 }
-                //case "spelllist" -> Spells.printSpelllist();
-                //case "cast" -> Spells.castSpells(input);
-                //case "interact" -> Interactions.attemptInteraction(input);
+                case "spelllist" -> {
+                    return game.player.presentSpelllist();
+                }
+                case "cast" -> {
+                    game.gameState = SPELLCAST;
+                    return "Which spell do you want to cast? Use spell list if you are unsure!";
+                }
+                    //case "interact" -> Interactions.attemptInteraction(input);
+
 
 
                 case "quitgame" -> System.exit(0);
@@ -122,6 +120,20 @@ public class Commands {
                     return "Unknown command";
                 }
             }
+        } else if (game.gameState == SPELLCAST) {
+            switch (input) {
+                case "lightningtouch" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.lightningTouch(game);
+                }
+                case "spelllist" -> {
+                    return game.player.presentSpelllist();
+                }
+                default -> {
+                    return "Unknown command";
+                }
+            }
+
         }
         return "";
     }

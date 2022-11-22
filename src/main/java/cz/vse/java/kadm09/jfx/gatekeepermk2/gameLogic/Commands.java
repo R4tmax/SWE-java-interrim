@@ -111,6 +111,8 @@ public class Commands {
                 }
             }
         } else if (game.gameState == COMBAT) {
+            game.initiative = false;
+            System.out.println("Testing print - killing initiative boolean");
             switch (input) {
                 case "attack" -> {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);

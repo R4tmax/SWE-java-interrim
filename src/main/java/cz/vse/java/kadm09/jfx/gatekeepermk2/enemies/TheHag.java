@@ -14,7 +14,7 @@ public class TheHag extends Monster implements HostileActions {
                     It is so much stronger here, you almost feel dizzy.
                     Suddenly, you notice movement in nearby reeds.
                     A small, but very much so disgusting womanlike creature stands in front of you.
-                    Your instinct tells you, if you feel the need to cast a spell, you should do it NOW.
+                    Your instinct tells you, that if you want to cast a spell, you should do it NOW.
                 """;
     }
 

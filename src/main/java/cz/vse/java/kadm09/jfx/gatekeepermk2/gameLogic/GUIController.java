@@ -10,6 +10,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
+
 public class GUIController implements Observer{
     public TextArea GUIHealth;
     public TextArea GUIMana;
@@ -63,6 +65,13 @@ public class GUIController implements Observer{
         String GUIUserInput = GUIInput.getText();
         GUIOutput.appendText("> " + GUIUserInput + "\n");
         GUIInput.clear();
+        if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
+                game.initiative) {
+            game.gameState = COMBAT;
+            System.out.println("triggered combat");
+        }
+
+
         present(Commands.commandList(GUIUserInput,game));
 
     }

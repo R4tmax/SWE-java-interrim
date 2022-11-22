@@ -30,6 +30,10 @@ public class Room {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean isLocked() {
         return isLocked;
     }

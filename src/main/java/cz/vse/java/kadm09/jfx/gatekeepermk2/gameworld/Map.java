@@ -123,12 +123,11 @@ public class Map {
                 Fortunately the bog gives way in all other directions.
                 """, false , null, null, RoomType.RECON);
         gameArea[2][4] = new Room("THE DEEP SWAMP", """
-                Creature which you decided to dub 'The Hag' lies dead at your feet.
-                It almost looks like the ground began to reclaim the body.
-                Something tells you, that the corpse won't be here come next week.
-                You cannot see anything from where you are standing, aside from the fact,
-                that swamp is impassable due east, you need to head somewhere else.
-                As you look around one last time, some herbs catch your attention.
+                    The feeling you had around here. The dense air and shivers?
+                    It is so much stronger here, you almost feel dizzy.
+                    Suddenly, you notice movement in nearby reeds.
+                    A small, but very much so disgusting womanlike creature stands in front of you.
+                    Your instinct tells you, that if you want to cast a spell, you should do it NOW.
                 """, false , new Consumable("Magical herbs",50,ConsumableType.MANA_FILL), new TheHag("Hag", 625,7,750), RoomType.HOSTILE);
 
         //fourth row

@@ -24,7 +24,7 @@ public class TheBrute extends Monster implements HostileActions {
     public String attackPattern(Game game) {
         int damageDealt = this.damage;
         game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
-        return "You took a massive hit from " + this.name + "\n"
+        return "You took a massive hit from " + this.name +  "for " + damageDealt + "\n"
         + "the creature is not bothered by your armor at all!";
     }
 }

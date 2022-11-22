@@ -21,6 +21,6 @@ public class TheMatriarch extends Monster implements HostileActions {
         game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
         game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
         return "You were slashed two times in row by " + this.name + "\n" +
-                "She is a fierce creature!";
+                "She is a fierce creature! The total damage received was: " + damageDealt;
     }
 }

@@ -1,13 +1,12 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
-import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
-import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
 import static java.lang.System.exit;
 
 /**
@@ -43,6 +42,13 @@ public class Main extends Application {
             System.out.println(game.gameMap.presentPosition(game.player));
 
             while (true) {
+
+                if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
+                        game.initiative) {
+                    game.gameState = COMBAT;
+                    System.out.println("triggered combat");
+                }
+
                 System.out.println(Commands.processInput(game));
 
                 if (game.player.isDead()) exit(0);

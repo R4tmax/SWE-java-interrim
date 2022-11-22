@@ -25,6 +25,6 @@ public class TheHag extends Monster implements HostileActions {
         game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
         game.getPlayer().setCurrentMana(game.getPlayer().getCurrentMana() - damageDealt);
         return "You were hit by " + this.name + "for " + damageDealt + " points of damage " + "\n" +
-                "Hag deals the same damage to your health as well!";
+                "Hag deals the same damage to your mana as well!";
     }
 }

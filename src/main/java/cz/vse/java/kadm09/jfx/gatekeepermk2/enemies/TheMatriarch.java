@@ -16,6 +16,11 @@ public class TheMatriarch extends Monster implements HostileActions {
 
     @Override
     public String attackPattern(Game game) {
-        return null;
+        int damageDealt = this.damage - game.getPlayer().getArmor();
+        damageDealt = game.getPlayer().accountForArmor(damageDealt);
+        game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
+        game.getPlayer().setCurrentHealth(game.getPlayer().getCurrentHealth()- damageDealt);
+        return "You were slashed two times in row by " + this.name + "\n" +
+                "She is a fierce creature!";
     }
 }

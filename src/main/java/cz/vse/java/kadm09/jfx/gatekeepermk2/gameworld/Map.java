@@ -95,12 +95,10 @@ public class Map {
         //third row
 
         gameArea[2][0] = new Room("THE STRANGE CLEARING", """
-                Phew, the monstrosity is dead.
-                You have little idea what that thing was. But you are glad you made it out.
-                The creature, even dead, looks menacing and out of this world. It still could be, for all you know.
-                The Kings Road is safe now, for the time being.
-                You get your bearings. Road is due South, and forests lie north-east.
-                You notice that the way west would take you over a cliff, the drop is too high to brave.
+                  Hideous and terrible creature stands in front of you, it is at least 3 meters tall!
+                  It has terrible musculature, and it's skin is so white, you can almost see the sinew and
+                  blood vessels underneath.
+                  You get the feeling like you are in for a long haul.
                 """, false , null, new TheBrute("Brute",1000,8,1000), RoomType.HOSTILE);
         gameArea[2][1] = new Room("Bush-filled plain", """
                 It feels, like someone lives nearby. You notice that a lot of the bushes and small trees

@@ -28,6 +28,43 @@ public class Game {
 
     public void updateDescriptors () {
 
+        if (this.gameMap.getCurrentPosition(2,0).getRoomEnemy() == null) {
+            this.gameMap.getCurrentPosition(2,1).setDescription("""
+                It feels, like someone lives nearby. You notice that a lot of the bushes and small trees
+                in the area have damaged bark and branches, as if something regularly smashed through here.
+                As you head west, the damage gets more and more pronounced.
+                You already figured that out, of course, and put an end to it.
+                Dead gem merchant is still lying dead in one of the bushes,
+                You wonder, if you already checked his pockets.
+                """);
+
+            this.gameMap.getCurrentPosition(1,0).setDescription("""
+                You walk amongst the thinly space trees and admire the view to the west.
+                You cannot quite get there, as a narrow cliff block your way. But you see distant cities
+                and castles on the horizon. Places where you come from and for which you fight.
+                Memory of bloody encounter runs across your cortex, as you look south.
+                Up north, hills rise up, while eastern view is blocked by the trees.
+                Blue herbs are growing here.
+                """);
+
+            this.gameMap.getCurrentPosition(3,0).setDescription("""
+                Same as along the Kings Road, which lies to your south now.
+                You rest easy looking north, knowing you slain the beast.
+                However desolate area might look.
+                You can still make out village buildings to the east.
+                """);
+
+            this.gameMap.getCurrentPosition(2,0).setDescription("""
+                Phew, the monstrosity is dead.
+                You have little idea what that thing was. But you are glad you made it out.
+                The creature, even dead, looks menacing and out of this world. It still could be, for all you know.
+                The Kings Road is safe now, for the time being.
+                You get your bearings. Road is due South, and forests lie north-east.
+                You notice that the way west would take you over a cliff, the drop is too high to brave.
+                """);
+        }
+
+
         if (this.gameMap.getCurrentPosition(2,4).getRoomEnemy() == null) {
             this.gameMap.getCurrentPosition(2,3).setDescription("""
                 You made your way to what seems to be some sort of a bog.

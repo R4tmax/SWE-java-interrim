@@ -22,7 +22,7 @@ public class Setup {
     }
 
     public static TheKnight createKnight(){
-        return new TheKnight(200,50,2,15,250,new Coordinates(4,2),false);
+        return new TheKnight(200,50,4,30,500,new Coordinates(4,2),false);
     }
 
     public static String introMessage () {

@@ -53,6 +53,10 @@ public class Room {
     public void setRoomEnemy(Monster roomEnemy) {
         this.roomEnemy = roomEnemy;
     }
+
+    public RoomType getRoomBehavior() {
+        return roomBehavior;
+    }
 }
 
 

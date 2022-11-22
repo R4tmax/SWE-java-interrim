@@ -4,6 +4,7 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.ObservedElement;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Observer;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.RoomType;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Consumable;
 
 import java.util.ArrayList;
@@ -249,9 +250,115 @@ public class TheKnight implements ObservedElement {
         }
 
 
-        this.setCurrentMana(this.getCurrentMana() - 100);
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
         game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().setHealth(game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().getHealth() - 100);
         return "Your enemy took a nice hit!";
+    }
+
+    public String heal() {
+        int manaCost = 15;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
+        this.setCurrentHealth(this.getCurrentHealth() +150);
+        this.preventOverheal();
+        return "You feel better!";
+    }
+
+    /**
+     * Combines functionalities of lightning touch and heal.
+     * With modified values.
+     * <p>
+     * <p>
+     * Take note that from technical standpoint this
+     * is considered to be offensive spell, and as such cannot be used
+     * outside of combat.
+     */
+    public String holySmite(Game game) {
+        int manaCost = 25;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        if (game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy() == null) {
+            return "No target!";
+        }
+
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
+        this.setCurrentHealth(this.getCurrentHealth() + 50);
+        this.preventOverheal();
+
+        game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().setHealth(game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().getHealth() - 200);
+        return "You feel slightly better and your enemy took a hit!";
+    }
+
+    /**
+     * Supercharged version of lightning touch.
+     *
+     */
+    public String lightningStrike(Game game) {
+        int manaCost = 50;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        if (game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy() == null) {
+
+            return "No target!";
+        }
+
+
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
+        game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().setHealth(game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomEnemy().getHealth() - 600);
+        return "Your enemy took a massive hit!";
+    }
+
+    /**
+     * Permanently increases armor value of
+     * The Knight upon use.
+     * <p>
+     * Take note that trying to cast this in
+     * 'hostile' rooms will break cause miscast.
+     */
+    public String prayerOfResolve(Game game) {
+        int manaCost = 35;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        if (game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomBehavior() == RoomType.HOSTILE) {
+            this.setCurrentMana(this.getCurrentMana() - manaCost);
+            return  "Concentration broken!" + " Cast failed!";
+        }
+
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
+        this.setArmor(this.getArmor()+2);
+        return "You feel better suited to deal with the task at hand";
+    }
+
+    /**
+     * Permanently increases damage value of
+     * The Knight upon use.
+     * <p>
+     * Take note that trying to cast this in
+     * 'hostile' rooms will break cause miscast.
+     */
+    public String prayerOfStrength(Game game) {
+        int manaCost = 35;
+        if (manaCost > this.currentMana) {
+            return "Not enough mana to cast!";
+        }
+
+        if (game.getGameMap().getCurrentPosition(this.position.horizontal, this.position.vertical).getRoomBehavior() == RoomType.HOSTILE) {
+            this.setCurrentMana(this.getCurrentMana() - manaCost);
+            return  "Concentration broken!" + " Cast failed!";
+        }
+
+        this.setCurrentMana(this.getCurrentMana() - manaCost);
+        this.setDamage(this.getDamage() + 5);
+        return "You feel better suited to deal with the task at hand";
     }
 
 

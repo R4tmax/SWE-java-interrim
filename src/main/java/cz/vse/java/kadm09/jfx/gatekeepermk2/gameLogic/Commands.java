@@ -126,6 +126,26 @@ public class Commands {
                     game.gameState = EXPLORATION;
                     return game.player.lightningTouch(game);
                 }
+                case "heal" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.heal();
+                }
+                case "smite" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.holySmite(game);
+                }
+                case "lightningstrike" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.lightningStrike(game);
+                }
+                case "prayerofresolve" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.prayerOfResolve(game);
+                }
+                case "prayerofstrength" -> {
+                    game.gameState = EXPLORATION;
+                    return game.player.prayerOfStrength(game);
+                }
                 case "spelllist" -> {
                     return game.player.presentSpelllist();
                 }

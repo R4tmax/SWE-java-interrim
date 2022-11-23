@@ -11,9 +11,6 @@ public class Game {
     protected TheKnight player;
     protected Map gameMap;
 
-    //int
-
-    //bool
 
 
     public Game() {
@@ -30,7 +27,19 @@ public class Game {
         return gameMap;
     }
 
-    public void updateDescriptors () {
+    public void checkGameStatus () {
+
+        if (this.getPlayer().getCurrentHealth() <= 0 ) this.getPlayer().setDead(true);
+        if (this.getPlayer().getCurrentMana() <= 0) this.getPlayer().setCurrentMana(0);
+
+        if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() != null
+        && this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() <= 0 ) {
+            this.player.setGoldHeld(this.getPlayer().getGoldHeld() + this.gameMap.getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getGoldDrop());
+            this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).setRoomEnemy(null);
+            this.updateDescriptors();
+        }
+    }
+    private void updateDescriptors () {
 
         if (this.gameMap.getCurrentPosition(2,0).getRoomEnemy() == null) {
             this.gameMap.getCurrentPosition(2,1).setDescription("""

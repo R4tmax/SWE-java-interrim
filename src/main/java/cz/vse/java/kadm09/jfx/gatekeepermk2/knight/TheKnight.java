@@ -37,7 +37,7 @@ public class TheKnight implements ObservedElement {
     public final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int INVENTORY_CAP = 5;
     protected Coordinates position;
-    protected boolean isDead = false;
+    protected boolean isDead;
 
     public Set<Observer> listOfObservers = new HashSet<>();
 
@@ -89,6 +89,10 @@ public class TheKnight implements ObservedElement {
 
     public boolean isDead() {
         return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     public TheKnight(int currentHealth, int currentMana, int armor, int damage, int goldHeld, Coordinates position, boolean isDead) {

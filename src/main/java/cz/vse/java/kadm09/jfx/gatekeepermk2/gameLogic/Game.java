@@ -11,6 +11,10 @@ public class Game {
     protected TheKnight player;
     protected Map gameMap;
 
+    //int
+
+    //bool
+
 
     public Game() {
         this.gameState = Setup.initGameState();

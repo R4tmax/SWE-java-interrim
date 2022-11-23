@@ -100,11 +100,14 @@ public class Commands {
                     return game.player.presentInventoryContent();
                 }
                 case "cancel" -> {
-                    game.gameState = EXPLORATION;
-                    return "Cancelling move command."; //TODO: Improve cancelling logic to prevent incorrectly handling states
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
+
+                    return "Cancelling useitem command.";
                 }
                 default -> {
-                    game.gameState = EXPLORATION; //TODO: -//-
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.useItem(game, input);
                 }
             }
@@ -116,34 +119,71 @@ public class Commands {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
                     return "attempted strike TBD" + attackResolution;
                 }
+                case "showinventory" -> {
+                    return game.player.presentInventoryContent();
+                }
+                case "useitem" -> {
+                    String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
+                    game.gameState = INVENTORY;
+                    return "Your foe senses the opening and goes for the attack!" + "\n"
+                            + attackResolution
+                            + "\n" + "Which item do you want to use?";
+
+                }
+                case "spelllist" -> {
+                    return game.player.presentSpelllist();
+                }
+                case "help" -> {
+                    return game.player.presentCommandListCombat();
+                }
+                case "cast" -> {
+                    game.gameState = SPELLCAST;
+                    String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
+                    return "Your foe senses the opening and goes for the attack!" + "\n"
+                            + attackResolution
+                            + "\n"
+                            + "Which spell do you want to cast? Use spell list if you are unsure!";
+                }
                 default -> {
-                    return "Unknown command";
+                    return "You are under attack! Use HELP command if you are lost.";
                 }
             }
         } else if (game.gameState == SPELLCAST) {
             switch (input) {
+                case "cancel" -> {
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
+
+                    return "Cancelling casting";
+                }
                 case "lightningtouch" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.lightningTouch(game);
                 }
                 case "heal" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.heal();
                 }
                 case "smite" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.holySmite(game);
                 }
                 case "lightningstrike" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.lightningStrike(game);
                 }
                 case "prayerofresolve" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.prayerOfResolve(game);
                 }
                 case "prayerofstrength" -> {
-                    game.gameState = EXPLORATION;
+                    if (game.initiative)  game.gameState = EXPLORATION;
+                    else game.gameState = COMBAT;
                     return game.player.prayerOfStrength(game);
                 }
                 case "spelllist" -> {

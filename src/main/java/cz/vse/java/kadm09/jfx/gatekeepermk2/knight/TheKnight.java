@@ -27,9 +27,9 @@ import java.util.Set;
  *
  */
 public class TheKnight implements ObservedElement {
-    public final int MAX_HEALTH = 200;
+    public static final int MAX_HEALTH = 225;
     protected int currentHealth;
-    public final int MAX_MANA = 50;
+    public static final int MAX_MANA = 75;
     protected int currentMana;
     protected int armor;
     protected int damage;

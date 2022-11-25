@@ -140,8 +140,9 @@ public class Commands {
 
             switch (input) {
                 case "attack" -> {
-                    String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
-                    return attackResolution;
+                    String monsterAttackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
+                    String knightAttackResoultion = game.strikeEnemy();
+                    return monsterAttackResolution + "\n" + knightAttackResoultion ;
                 }
                 case "showinventory" -> {
                     return game.player.presentInventoryContent();

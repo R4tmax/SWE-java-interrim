@@ -1,6 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.enemies.Monster;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
@@ -175,5 +176,10 @@ public class Game {
         armorsmithIterator++;
         this.player.setArmor(this.player.getArmor() + 2);
         return "Your armor has been refitted, you now have: " + this.player.getArmor() + "Armor!";
+    }
+
+    public String strikeEnemy() {
+         this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().setHealth(this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() - this.player.getDamage());
+         return "You hit your enemy for: " + this.player.getDamage();
     }
 }

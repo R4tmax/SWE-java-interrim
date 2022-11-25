@@ -5,8 +5,6 @@ public abstract class Monster implements HostileActions{
     protected int health;
     protected int damage;
 
-    protected boolean isDead = false;
-
     protected int goldDrop;
 
     public String getName() {
@@ -19,10 +17,6 @@ public abstract class Monster implements HostileActions{
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public void setDead(boolean dead) {
-        isDead = dead;
     }
 
     public int getGoldDrop() {

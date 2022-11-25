@@ -1,6 +1,5 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
-import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 public enum GameState {
@@ -15,14 +14,15 @@ public enum GameState {
     EXPLORATION,
     /**
      * Game expects directional input for the move command
-     * @see cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight#moveKnight(String, TheKnight, Map)
+     * @see TheKnight#moveKnight(String, Game);
      */
     MOVEMENT,
     COMBAT,
     /**
      * Game is expecting the name of the item to be used as an input.
      */
-    INVENTORY, //TODO: , potentially problematic during combat
+    INVENTORY,
+    MARKET,
     /**
      * Player is shoping for armor upgrades
      */
@@ -31,7 +31,7 @@ public enum GameState {
      * Player is shopping for weapon upgrades
      */
     HUNTSMAN,
-    SPELLCAST, //todo: potentially problematic in relation to combat, might need to rework string processing logic for this command
+    SPELLCAST,
     ENDGAME
 
 

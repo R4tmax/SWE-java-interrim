@@ -58,7 +58,22 @@ public class Commands {
                     game.gameState = SPELLCAST;
                     return "Which spell do you want to cast? Use spell list if you are unsure!";
                 }
-                    //case "interact" -> Interactions.attemptInteraction(input);
+                case "interact" -> {
+                    switch (game.gameMap.getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomBehavior()) {
+                        case TALKABLE -> {
+                            return game.callScout();
+                        }
+                        case RECON -> {
+                            return "Hmm, no one is around.";
+                        }
+                        case HOSTILE -> {
+                            return "Shivers run down your spine. Some unnatural darkness still looms here and your thoughts disperse.";
+                        }
+                        default -> {
+                            return "Room-type ERROR";
+                        }
+                    }
+                }
 
 
 
@@ -117,7 +132,7 @@ public class Commands {
             }
         } else if (game.gameState == COMBAT) {
             game.initiative = false;
-            System.out.println("Testing print - killing initiative boolean");
+
             switch (input) {
                 case "attack" -> {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);

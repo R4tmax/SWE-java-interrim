@@ -4,6 +4,8 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
+import java.util.ArrayList;
+
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
 
 public class Game {
@@ -13,12 +15,20 @@ public class Game {
     protected TheKnight player;
     protected Map gameMap;
 
+    private int huntsmanIterator = 1;
+    private int armorsmithIterator = 1;
+    private final int restPrice = 300;
+    private final int upgradePrice = 125;
+    private int dialogueIterator = 0;
+    protected final ArrayList<String> dialogueScout  = new ArrayList<>();
+
 
 
     public Game() {
         this.gameState = Setup.initGameState();
         this.player = Setup.createKnight();
         this.gameMap = Setup.createMap();
+        Setup.initializeDialogues(this);
     }
 
     public TheKnight getPlayer() {
@@ -27,6 +37,10 @@ public class Game {
 
     public Map getGameMap() {
         return gameMap;
+    }
+
+    public ArrayList<String> getDialogueScout() {
+        return dialogueScout;
     }
 
     public String checkGameStatus () {
@@ -123,4 +137,12 @@ public class Game {
             this.gameMap.getCurrentPosition(0,2).setLocked(false);
 
     }
+
+    public String callScout () {
+        String toReturn = dialogueScout.get(dialogueIterator);
+        dialogueIterator++;
+        if (dialogueIterator>=dialogueScout.size()) dialogueIterator = 0;
+        return toReturn;
+    }
+
 }

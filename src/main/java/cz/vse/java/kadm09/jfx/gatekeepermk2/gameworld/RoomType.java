@@ -14,7 +14,7 @@ public enum RoomType {
     TALKABLE,
     /**
      * TRADEABLE represents the market position in the world.
-     * Players can upgrade their gear on the market.
+     * Players can upgrade their gear at the market.
      */
     TRADABLE,
     /**

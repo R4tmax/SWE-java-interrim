@@ -61,14 +61,21 @@ public class GUIController implements Observer{
 
 
 
-    public void acceptInput(ActionEvent actionEvent) {
+    public void acceptInput() {
+
+        if(game.player.isDead()) {
+            present("You have died, better luck next time!");
+            GUIOutput.setDisable(true);
+            GUIInput.setDisable(true);
+            return;
+        }
+
         String GUIUserInput = GUIInput.getText();
         GUIOutput.appendText("> " + GUIUserInput + "\n");
         GUIInput.clear();
         if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                 game.initiative) {
             game.gameState = COMBAT;
-            System.out.println("triggered combat");
         }
 
 

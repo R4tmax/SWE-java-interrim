@@ -43,6 +43,12 @@ public class Main extends Application {
 
             while (true) {
 
+                game.checkGameStatus();
+                if (game.player.isDead()) {
+                    System.out.println("You have died, better luck next time!");
+                    exit(0);
+                }
+
                 if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                         game.initiative) {
                     game.gameState = COMBAT;
@@ -50,13 +56,10 @@ public class Main extends Application {
                 }
 
                 System.out.println(Commands.processInput(game));
-
-                if (game.player.isDead()) exit(0);
             }
 
 
-        } else
-        {
+        } else {
             launch();
         }
 

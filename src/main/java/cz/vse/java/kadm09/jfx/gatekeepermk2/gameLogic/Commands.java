@@ -27,6 +27,10 @@ public class Commands {
                 case "help" -> {
                     return game.player.presentCommandListExploration();
                 }
+                case "kill" -> {
+                    game.player.setCurrentHealth(0);
+                    return "Killing the player"; //TODO: Cleanse once not needed
+                }
                 case "move" -> {
                     game.gameState = MOVEMENT;
                     return "In which direction do you want to move?";

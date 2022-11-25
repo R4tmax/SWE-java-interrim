@@ -145,4 +145,15 @@ public class Game {
         return toReturn;
     }
 
+    public String rest() {
+
+        if(this.getPlayer().getGoldHeld() < restPrice) return "You do not have enough money!";
+
+        this.player.setGoldHeld(this.player.getGoldHeld()-restPrice);
+        this.player.setCurrentHealth(TheKnight.MAX_HEALTH);
+        this.player.setCurrentMana(TheKnight.MAX_MANA);
+        this.player.setDamage(this.player.getDamage() + 5);
+
+        return "You are feeling well rested and prepared to fight!";
+    }
 }

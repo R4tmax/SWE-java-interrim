@@ -68,7 +68,7 @@ public class Commands {
                         }
                         case REST_AREA -> {
                             game.gameState = INN;
-                            return "You enter the tavern";
+                            return "You enter the tavern. You could rest here, for a measly price of 300 gold. (Y/N)";
                         }
                         case TRADABLE -> {
                             game.gameState = MARKET;
@@ -82,9 +82,6 @@ public class Commands {
                         }
                     }
                 }
-
-
-
                 case "quitgame" -> System.exit(0);
                 default -> {
                     return ("Unknown command, use HELP command if you are lost.");
@@ -220,7 +217,22 @@ public class Commands {
                     return "Unknown command";
                 }
             }
-
+        } else if (game.gameState == INN) {
+            switch (input) {
+                case "y" -> {
+                    game.gameState = EXPLORATION;
+                    return game.rest();
+                }
+                case "n" -> {
+                    game.gameState = EXPLORATION;
+                    return "You left the INN and walked outside." + "\n" +
+                            game.getGameMap().presentPosition(game.player);
+                }
+                default -> {
+                    return "Press Y to pay 300 gold for sleep and rest" +"\n" +
+                            "Press N to walkout";
+                }
+            }
         }
         return "";
     }

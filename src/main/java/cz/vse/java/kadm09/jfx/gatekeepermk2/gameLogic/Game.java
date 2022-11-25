@@ -33,9 +33,8 @@ public class Game {
 
         if (this.getPlayer().getCurrentHealth() <= 0 ) this.getPlayer().setDead(true);
         if (this.getPlayer().getCurrentMana() <= 0) this.getPlayer().setCurrentMana(0);
-        if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() == null) {
+        if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() == null)
             this.initiative = true;
-        }
 
         if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() != null
         && this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() <= 0 ) {

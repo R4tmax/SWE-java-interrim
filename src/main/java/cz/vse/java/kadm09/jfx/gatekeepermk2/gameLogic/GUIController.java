@@ -88,7 +88,7 @@ public class GUIController implements Observer{
     }
 
     private void syncGameState() {
-        game.checkGameStatus();
+        present(game.checkGameStatus());
         if(game.player.isDead()) {
             present("You have died, better luck next time!");
             GUIOutput.setDisable(true);

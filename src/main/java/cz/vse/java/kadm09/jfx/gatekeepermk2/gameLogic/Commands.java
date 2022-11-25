@@ -141,7 +141,7 @@ public class Commands {
             switch (input) {
                 case "attack" -> {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
-                    return "attempted strike TBD" + attackResolution;
+                    return attackResolution;
                 }
                 case "showinventory" -> {
                     return game.player.presentInventoryContent();
@@ -231,6 +231,63 @@ public class Commands {
                 default -> {
                     return "Press Y to pay 300 gold for sleep and rest" +"\n" +
                             "Press N to walkout";
+                }
+            }
+        } else if (game.gameState == MARKET) {
+            switch (input) {
+                case "huntsman" -> {
+                    game.gameState = HUNTSMAN;
+                    return "You approach the huntsman, who gives you a lukewarm smile.";
+                }
+                case "armorsmith" -> {
+                    game.gameState = ARMORSMITH;
+                    return "You approach the armorsmith, who has a tired look and a underline of fear in his eyes";
+                }
+                case "cancel" -> {
+                    game.gameState = EXPLORATION;
+                    return "You have left the market" + "\n" +
+                            game.gameMap.presentPosition(game.player);
+                }
+                default -> {
+                    return """
+                            You are at the market, of all the stalls, only two catch your eyes.
+                            There is a HUNTSMAN, selling whetting stones and such.
+                            Furthermore, a bulky ARMORSMITH with a wagon is residing nearby.
+                            You can always just walkout, of course (CANCEL)
+                            """;
+                }
+            }
+        } else if (game.gameState == HUNTSMAN) {
+            switch (input) {
+                case "y" -> {
+                    return game.improveWeapons();
+                }
+                case "n" -> {
+                    game.gameState = EXPLORATION;
+                    return "You walked away from the stands, and headed back towards the village." + "\n" +
+                            game.getGameMap().presentPosition(game.player);
+                }
+                default -> {
+                    return "You can improve your weapons here, for a price. \n Upgrades get more expensive with each iteration."
+                            + "Press Y for weapon upgrades, press N to walkaway";
+                }
+            }
+            
+        } else if (game.gameState == ARMORSMITH) {
+            switch (input) {
+                case "y" -> {
+                    return game.improveArmor();
+                }
+                case "n" -> {
+                    game.gameState = EXPLORATION;
+                    return "You walked away from the stands, and headed back towards the village." + "\n" +
+                            game.getGameMap().presentPosition(game.player);
+                }
+                default -> {
+                    return """
+                            You can improve your weapons here, for a price.\s
+                             Upgrades get more expensive with each iteration.\s
+                            Press Y for armor upgrades, press N to walkaway""";
                 }
             }
         }

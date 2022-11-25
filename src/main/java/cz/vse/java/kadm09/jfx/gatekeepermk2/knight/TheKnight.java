@@ -340,7 +340,7 @@ public class TheKnight implements ObservedElement {
      * The Knight upon use.
      * <p>
      * Take note that trying to cast this in
-     * 'hostile' rooms will break cause miscast.
+     * 'hostile' rooms will cause miscast.
      */
     public String prayerOfResolve(Game game) {
         int manaCost = 35;

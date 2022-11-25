@@ -17,7 +17,6 @@ public class Game {
 
     private int huntsmanIterator = 1;
     private int armorsmithIterator = 1;
-    private final int restPrice = 300;
     private final int upgradePrice = 125;
     private int dialogueIterator = 0;
     protected final ArrayList<String> dialogueScout  = new ArrayList<>();
@@ -147,13 +146,34 @@ public class Game {
 
     public String rest() {
 
+        int restPrice = 300;
         if(this.getPlayer().getGoldHeld() < restPrice) return "You do not have enough money!";
 
-        this.player.setGoldHeld(this.player.getGoldHeld()-restPrice);
+        this.player.setGoldHeld(this.player.getGoldHeld()- restPrice);
         this.player.setCurrentHealth(TheKnight.MAX_HEALTH);
         this.player.setCurrentMana(TheKnight.MAX_MANA);
-        this.player.setDamage(this.player.getDamage() + 5);
+        this.player.setDamage(this.player.getDamage() + 2);
 
         return "You are feeling well rested and prepared to fight!";
+    }
+
+    public String improveWeapons() {
+        int calcPrice = huntsmanIterator * upgradePrice;
+        if(this.getPlayer().getGoldHeld() < calcPrice) return "You do not have enough money! Huntsman currently needs: " + calcPrice;
+
+        this.player.setGoldHeld(this.player.getGoldHeld() - calcPrice);
+        huntsmanIterator++;
+        this.player.setDamage(this.player.getDamage() + 5);
+        return "Your weapons have been upgraded, you currently deal: " + this.player.getDamage() + "Damage!";
+    }
+
+    public String improveArmor() {
+        int calcPrice = armorsmithIterator * upgradePrice;
+        if(this.getPlayer().getGoldHeld() < calcPrice) return "You do not have enough money! Armorsmith currently needs: " + calcPrice;
+
+        this.player.setGoldHeld(this.player.getGoldHeld() - calcPrice);
+        armorsmithIterator++;
+        this.player.setArmor(this.player.getArmor() + 2);
+        return "Your armor has been refitted, you now have: " + this.player.getArmor() + "Armor!";
     }
 }

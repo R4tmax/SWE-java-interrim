@@ -4,6 +4,8 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
+
 public class Game {
 
     public boolean initiative = true;
@@ -27,17 +29,25 @@ public class Game {
         return gameMap;
     }
 
-    public void checkGameStatus () {
+    public String checkGameStatus () {
 
         if (this.getPlayer().getCurrentHealth() <= 0 ) this.getPlayer().setDead(true);
         if (this.getPlayer().getCurrentMana() <= 0) this.getPlayer().setCurrentMana(0);
+        if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() == null) {
+            this.initiative = true;
+        }
 
         if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() != null
         && this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() <= 0 ) {
             this.player.setGoldHeld(this.getPlayer().getGoldHeld() + this.gameMap.getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getGoldDrop());
             this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).setRoomEnemy(null);
             this.updateDescriptors();
+            this.gameState = EXPLORATION;
+            this.initiative = true;
+            return this.gameMap.getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getDescription();
         }
+
+        return "";
     }
     private void updateDescriptors () {
 

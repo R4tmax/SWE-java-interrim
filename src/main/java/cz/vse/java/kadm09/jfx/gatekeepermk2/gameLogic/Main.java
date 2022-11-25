@@ -43,7 +43,7 @@ public class Main extends Application {
 
             while (true) {
 
-                game.checkGameStatus();
+                System.out.println(game.checkGameStatus());
                 if (game.player.isDead()) {
                     System.out.println("You have died, better luck next time!");
                     exit(0);

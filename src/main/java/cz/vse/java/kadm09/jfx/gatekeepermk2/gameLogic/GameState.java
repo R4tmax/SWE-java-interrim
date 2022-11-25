@@ -31,6 +31,7 @@ public enum GameState {
      * Player is shopping for weapon upgrades
      */
     HUNTSMAN,
+    INN,
     SPELLCAST,
     ENDGAME
 

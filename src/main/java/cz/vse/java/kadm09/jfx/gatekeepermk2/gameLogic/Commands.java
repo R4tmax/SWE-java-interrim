@@ -66,6 +66,14 @@ public class Commands {
                         case RECON -> {
                             return "Hmm, no one is around.";
                         }
+                        case REST_AREA -> {
+                            game.gameState = INN;
+                            return "You enter the tavern";
+                        }
+                        case TRADABLE -> {
+                            game.gameState = MARKET;
+                            return "You enter the market and peruse the local stands.";
+                        }
                         case HOSTILE -> {
                             return "Shivers run down your spine. Some unnatural darkness still looms here and your thoughts disperse.";
                         }

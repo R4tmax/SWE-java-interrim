@@ -60,27 +60,42 @@ public class GUIController implements Observer{
     }
 
 
-
+    @FXML
     public void acceptInput() {
-
-        if(game.player.isDead()) {
-            present("You have died, better luck next time!");
-            GUIOutput.setDisable(true);
-            GUIInput.setDisable(true);
-            return;
-        }
 
         String GUIUserInput = GUIInput.getText();
         GUIOutput.appendText("> " + GUIUserInput + "\n");
         GUIInput.clear();
+
+        handleInput(GUIUserInput);
+
+        GUIInput.requestFocus();
+    }
+
+
+    private void handleInput(String input) {
+
+        syncGameState();
+
         if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                 game.initiative) {
             game.gameState = COMBAT;
         }
 
+        present(Commands.commandList(input,game));
 
-        present(Commands.commandList(GUIUserInput,game));
+        syncGameState();
 
+        GUIInput.requestFocus();
+    }
+
+    private void syncGameState() {
+        game.checkGameStatus();
+        if(game.player.isDead()) {
+            present("You have died, better luck next time!");
+            GUIOutput.setDisable(true);
+            GUIInput.setDisable(true);
+        }
     }
 
         private void showHealth(TheKnight player) {

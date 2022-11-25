@@ -119,5 +119,8 @@ public class Game {
                 """);
         }
 
+        if (this.gameMap.getCurrentPosition(2,0).getRoomEnemy() == null && this.gameMap.getCurrentPosition(2,4).getRoomEnemy() == null)
+            this.gameMap.getCurrentPosition(0,2).setLocked(false);
+
     }
 }

@@ -38,6 +38,10 @@ public class Room {
         return isLocked;
     }
 
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
     public Item getRoomLoot() {
         return roomLoot;
     }

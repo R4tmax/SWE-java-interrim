@@ -75,21 +75,21 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+         <BorderPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
             <left>
-               <Button fx:id="GUIQMLeft" stylesheets="@styles.css" styleClass="leftArrow" mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMLeft" minHeight="100.0" minWidth="105.0" mnemonicParsing="false" styleClass="leftArrow" stylesheets="@styles.css" text="West" BorderPane.alignment="CENTER" />
             </left>
             <top>
-               <Button fx:id="GUIQMUp" stylesheets="@styles.css" styleClass="upArrow" mnemonicParsing="false" text="North" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMUp" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="upArrow" stylesheets="@styles.css" text="North" BorderPane.alignment="CENTER" />
             </top>
             <center>
-               <Button fx:id="GUIQMLook" stylesheets="@styles.css" styleClass="" mnemonicParsing="false" text="Look around" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMLook" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="" stylesheets="@styles.css" text="Look around" BorderPane.alignment="CENTER" />
             </center>
             <right>
-               <Button fx:id="GUIQMRight" stylesheets="@styles.css" styleClass="rightArrow" mnemonicParsing="false" text="East" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMRight" minHeight="100.0" minWidth="105.0" mnemonicParsing="false" styleClass="rightArrow" stylesheets="@styles.css" text="East" BorderPane.alignment="CENTER" />
             </right>
             <bottom>
-               <Button fx:id="GUIQMDown" stylesheets="@styles.css" styleClass="downArrow" mnemonicParsing="false" text="South" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMDown" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="downArrow" stylesheets="@styles.css" text="South" BorderPane.alignment="CENTER" />
             </bottom>
          </BorderPane>
       </children>

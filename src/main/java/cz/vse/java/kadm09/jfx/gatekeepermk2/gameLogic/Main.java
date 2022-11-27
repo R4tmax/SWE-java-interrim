@@ -49,10 +49,15 @@ public class Main extends Application {
                     exit(0);
                 }
 
+                if (game.endgame) {
+                    System.out.println("The Matriarch, the source of local discord, lies at your feet \n " +
+                            "Your task is done, rest easy, Knight of the King!.");
+                    exit(0);
+                }
+
                 if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                         game.initiative) {
                     game.gameState = COMBAT;
-                    System.out.println("triggered combat");
                 }
 
                 System.out.println(Commands.processInput(game));

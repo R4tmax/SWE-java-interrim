@@ -1,7 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
-import cz.vse.java.kadm09.jfx.gatekeepermk2.enemies.Monster;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
@@ -21,7 +20,7 @@ public class Game {
     private final int upgradePrice = 125;
     private int dialogueIterator = 0;
     protected final ArrayList<String> dialogueScout  = new ArrayList<>();
-
+    public boolean endgame = false;
 
 
     public Game() {
@@ -135,6 +134,9 @@ public class Game {
 
         if (this.gameMap.getCurrentPosition(2,0).getRoomEnemy() == null && this.gameMap.getCurrentPosition(2,4).getRoomEnemy() == null)
             this.gameMap.getCurrentPosition(0,2).setLocked(false);
+
+
+        if (this.gameMap.getCurrentPosition(0,2).getRoomEnemy() == null) this.endgame = true;
 
     }
 

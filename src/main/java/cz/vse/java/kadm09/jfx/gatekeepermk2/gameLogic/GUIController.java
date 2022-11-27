@@ -94,6 +94,13 @@ public class GUIController implements Observer{
             GUIOutput.setDisable(true);
             GUIInput.setDisable(true);
         }
+
+        if (game.endgame) {
+            present("The Matriarch, the source of local discord, lies at your feet \n " +
+                    "Your task is done, rest easy, Knight of the King!.");
+            GUIOutput.setDisable(true);
+            GUIInput.setDisable(true);
+        }
     }
 
         private void showHealth(TheKnight player) {

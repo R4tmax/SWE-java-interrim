@@ -5,10 +5,12 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
 
-public class Game {
+public class Game implements ObservedElement{
 
     public boolean initiative = true;
     protected Enum <GameState> gameState;
@@ -21,6 +23,8 @@ public class Game {
     private int dialogueIterator = 0;
     protected final ArrayList<String> dialogueScout  = new ArrayList<>();
     public boolean endgame = false;
+
+    public Set<Observer> listOfObservers = new HashSet<>();
 
 
     public Game() {
@@ -183,5 +187,16 @@ public class Game {
     public String strikeEnemy() {
          this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().setHealth(this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() - this.player.getDamage());
          return "You hit your enemy for: " + this.player.getDamage();
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listOfObservers.add(observer);
+    }
+
+    private void notifyObserver() {
+        for(Observer observer : listOfObservers) {
+            observer.updateStatus();
+        }
     }
 }

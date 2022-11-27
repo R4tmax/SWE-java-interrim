@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
 
 public class GUIController implements Observer{
     public TextArea GUIHealth;
@@ -63,9 +64,10 @@ public class GUIController implements Observer{
         GUIOutput.appendText("\n");
     }
 
-
+    //TODO:OBSERVER FOR GAMESTATE
     @FXML
     public void acceptInput() {
+        syncGameState();
 
         String GUIUserInput = GUIInput.getText();
         GUIOutput.appendText("> " + GUIUserInput + "\n");
@@ -74,6 +76,7 @@ public class GUIController implements Observer{
         handleInput(GUIUserInput);
 
         GUIInput.requestFocus();
+        syncGameState();
     }
 
 
@@ -84,7 +87,10 @@ public class GUIController implements Observer{
         if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                 game.initiative) {
             game.gameState = COMBAT;
+            game.initiative = false;
         }
+
+        syncGameState();
 
         present(Commands.commandList(input,game));
 
@@ -99,6 +105,26 @@ public class GUIController implements Observer{
             present("You have died, better luck next time!");
             GUIOutput.setDisable(true);
             GUIInput.setDisable(true);
+        }
+
+        if (game.gameState != EXPLORATION) {
+            GUIQMLook.setDisable(true);
+            GUIQMUp.setDisable(true);
+            GUIQMDown.setDisable(true);
+            GUIQMLeft.setDisable(true);
+            GUIQMRight.setDisable(true);
+        } else if (!game.initiative) {
+            GUIQMLook.setDisable(true);
+            GUIQMUp.setDisable(true);
+            GUIQMDown.setDisable(true);
+            GUIQMLeft.setDisable(true);
+            GUIQMRight.setDisable(true);
+        } else {
+            GUIQMLook.setDisable(false);
+            GUIQMUp.setDisable(false);
+            GUIQMDown.setDisable(false);
+            GUIQMLeft.setDisable(false);
+            GUIQMRight.setDisable(false);
         }
 
         if (game.endgame) {
@@ -141,6 +167,7 @@ public class GUIController implements Observer{
         showArmor(game.player);
         showDamage(game.player);
         showGold(game.player);
+        syncGameState();
     }
 
     @FXML
@@ -150,8 +177,14 @@ public class GUIController implements Observer{
 
     @FXML
     protected void quickmoveNorth () {
+        if(!game.initiative) {
+            present("You cannot escape!");
+            return;
+        }
+
         present(game.player.moveKnight("north",game));
         present(game.gameMap.presentPosition(game.player));
+        syncGameState();
     }
 
     @FXML

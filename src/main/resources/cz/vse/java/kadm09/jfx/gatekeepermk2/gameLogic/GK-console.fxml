@@ -77,19 +77,19 @@
       <children>
          <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
             <left>
-               <Button mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMLeft" stylesheets="@styles.css" styleClass="leftArrow" mnemonicParsing="false" text="West" BorderPane.alignment="CENTER" />
             </left>
             <top>
-               <Button mnemonicParsing="false" text="North" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMUp" stylesheets="@styles.css" styleClass="upArrow" mnemonicParsing="false" text="North" BorderPane.alignment="CENTER" />
             </top>
             <center>
-               <Button mnemonicParsing="false" text="Look around" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMLook" stylesheets="@styles.css" styleClass="" mnemonicParsing="false" text="Look around" BorderPane.alignment="CENTER" />
             </center>
             <right>
-               <Button mnemonicParsing="false" text="East" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMRight" stylesheets="@styles.css" styleClass="rightArrow" mnemonicParsing="false" text="East" BorderPane.alignment="CENTER" />
             </right>
             <bottom>
-               <Button mnemonicParsing="false" text="Sotuh" BorderPane.alignment="CENTER" />
+               <Button fx:id="GUIQMDown" stylesheets="@styles.css" styleClass="downArrow" mnemonicParsing="false" text="South" BorderPane.alignment="CENTER" />
             </bottom>
          </BorderPane>
       </children>

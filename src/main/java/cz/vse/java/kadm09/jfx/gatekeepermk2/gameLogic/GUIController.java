@@ -4,6 +4,7 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -26,6 +27,11 @@ public class GUIController implements Observer{
     public SplitPane GUIOutputSplitter;
 
     public Game game = new Game();
+    public Button GUIQMLeft;
+    public Button GUIQMUp;
+    public Button GUIQMLook;
+    public Button GUIQMRight;
+    public Button GUIQMDown;
 
     @FXML
     private void initialize (){

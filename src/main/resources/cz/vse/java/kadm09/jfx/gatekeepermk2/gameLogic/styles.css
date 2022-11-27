@@ -1,7 +1,6 @@
 
 .upArrow {
     -fx-shape: "M 750 500 L 400 100 L 50 500 L 750 500";
-    -fx-background-color: #FF0000;
 }
 
 .downArrow {

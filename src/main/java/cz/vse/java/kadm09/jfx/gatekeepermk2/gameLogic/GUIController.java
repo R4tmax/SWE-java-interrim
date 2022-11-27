@@ -142,4 +142,33 @@ public class GUIController implements Observer{
         showDamage(game.player);
         showGold(game.player);
     }
+
+    @FXML
+    protected void quickmoveLook () {
+        present(game.gameMap.presentPosition(game.player));
+    }
+
+    @FXML
+    protected void quickmoveNorth () {
+        present(game.player.moveKnight("north",game));
+        present(game.gameMap.presentPosition(game.player));
+    }
+
+    @FXML
+    protected void quickmoveSotuh () {
+        present(game.player.moveKnight("south",game));
+        present(game.gameMap.presentPosition(game.player));
+    }
+
+    @FXML
+    protected void quickmoveEast () {
+        present(game.player.moveKnight("east",game));
+        present(game.gameMap.presentPosition(game.player));
+    }
+
+    @FXML
+    protected void quickmoveWest () {
+        present(game.player.moveKnight("west",game));
+        present(game.gameMap.presentPosition(game.player));
+    }
 }

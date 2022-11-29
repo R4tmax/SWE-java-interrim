@@ -22,7 +22,7 @@ public class Game implements ObservedElement{
     private final int upgradePrice = 125;
     private int dialogueIterator = 0;
     protected final ArrayList<String> dialogueScout  = new ArrayList<>();
-    public boolean endgame = false;
+    protected boolean endgame = false;
 
     public Set<Observer> listOfObservers = new HashSet<>();
 
@@ -36,6 +36,11 @@ public class Game implements ObservedElement{
 
     public TheKnight getPlayer() {
         return player;
+    }
+
+    public void setGameState(Enum<GameState> gameState) {
+        this.gameState = gameState;
+        notifyObserver();
     }
 
     public Map getGameMap() {

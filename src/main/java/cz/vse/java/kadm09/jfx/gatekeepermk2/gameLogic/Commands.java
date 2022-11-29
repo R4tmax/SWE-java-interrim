@@ -32,7 +32,7 @@ public class Commands {
                     return "Killing the player"; //TODO: Cleanse once not needed
                 }
                 case "move" -> {
-                    game.gameState = MOVEMENT;
+                    game.setGameState(MOVEMENT);
                     return "In which direction do you want to move?";
                 }
                 case "lookaround" -> {
@@ -48,14 +48,14 @@ public class Commands {
                     return game.player.presentInventoryContent();
                 }
                 case "useitem" -> {
-                    game.gameState = INVENTORY;
+                    game.setGameState(INVENTORY);
                     return "Which item do you want to use?";
                 }
                 case "spelllist" -> {
                     return game.player.presentSpelllist();
                 }
                 case "cast" -> {
-                    game.gameState = SPELLCAST;
+                    game.setGameState(SPELLCAST);
                     return "Which spell do you want to cast? Use spell list if you are unsure!";
                 }
                 case "interact" -> {
@@ -67,11 +67,11 @@ public class Commands {
                             return "Hmm, no one is around.";
                         }
                         case REST_AREA -> {
-                            game.gameState = INN;
+                            game.setGameState(INN);
                             return "You enter the tavern. You could rest here, for a measly price of 300 gold. (Y/N)";
                         }
                         case TRADABLE -> {
-                            game.gameState = MARKET;
+                            game.setGameState(MARKET);
                             return "You enter the market and peruse the local stands.";
                         }
                         case HOSTILE -> {
@@ -90,27 +90,27 @@ public class Commands {
         } else if (game.gameState == MOVEMENT) {
             switch (input) {
                 case "north" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return game.player.moveKnight("north", game) + "\n"
                             + game.gameMap.presentPosition(game.player);
                 }
                 case "south" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return game.player.moveKnight("south", game) + "\n"
                             + game.gameMap.presentPosition(game.player);
                 }
                 case "west" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return game.player.moveKnight("west", game) + "\n"
                             + game.gameMap.presentPosition(game.player);
                 }
                 case "east" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return game.player.moveKnight("east", game) + "\n"
                             + game.gameMap.presentPosition(game.player);
                 }
                 case "cancel" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return "Cancelling move command.";
                 }
                 default -> {
@@ -124,14 +124,14 @@ public class Commands {
                     return game.player.presentInventoryContent();
                 }
                 case "cancel" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
 
                     return "Cancelling useitem command.";
                 }
                 default -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.useItem(game, input);
                 }
             }
@@ -149,7 +149,7 @@ public class Commands {
                 }
                 case "useitem" -> {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
-                    game.gameState = INVENTORY;
+                    game.setGameState(INVENTORY);
                     return "Your foe senses the opening and goes for the attack!" + "\n"
                             + attackResolution
                             + "\n" + "Which item do you want to use?";
@@ -162,7 +162,7 @@ public class Commands {
                     return game.player.presentCommandListCombat();
                 }
                 case "cast" -> {
-                    game.gameState = SPELLCAST;
+                    game.setGameState(SPELLCAST);
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
                     return "Your foe senses the opening and goes for the attack!" + "\n"
                             + attackResolution
@@ -176,39 +176,39 @@ public class Commands {
         } else if (game.gameState == SPELLCAST) {
             switch (input) {
                 case "cancel" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
 
                     return "Cancelling casting";
                 }
                 case "lightningtouch" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.lightningTouch(game);
                 }
                 case "heal" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.heal();
                 }
                 case "smite" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.holySmite(game);
                 }
                 case "lightningstrike" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.lightningStrike(game);
                 }
                 case "prayerofresolve" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.prayerOfResolve(game);
                 }
                 case "prayerofstrength" -> {
-                    if (game.initiative)  game.gameState = EXPLORATION;
-                    else game.gameState = COMBAT;
+                    if (game.initiative)  game.setGameState(EXPLORATION);
+                    else game.setGameState(COMBAT);
                     return game.player.prayerOfStrength(game);
                 }
                 case "spelllist" -> {
@@ -221,11 +221,11 @@ public class Commands {
         } else if (game.gameState == INN) {
             switch (input) {
                 case "y" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return game.rest();
                 }
                 case "n" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return "You left the INN and walked outside." + "\n" +
                             game.getGameMap().presentPosition(game.player);
                 }
@@ -237,15 +237,15 @@ public class Commands {
         } else if (game.gameState == MARKET) {
             switch (input) {
                 case "huntsman" -> {
-                    game.gameState = HUNTSMAN;
+                    game.setGameState(HUNTSMAN);
                     return "You approach the huntsman, who gives you a lukewarm smile.";
                 }
                 case "armorsmith" -> {
-                    game.gameState = ARMORSMITH;
+                    game.setGameState(ARMORSMITH);
                     return "You approach the armorsmith, who has a tired look and a underline of fear in his eyes";
                 }
                 case "cancel" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return "You have left the market" + "\n" +
                             game.gameMap.presentPosition(game.player);
                 }
@@ -264,7 +264,7 @@ public class Commands {
                     return game.improveWeapons();
                 }
                 case "n" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return "You walked away from the stands, and headed back towards the village." + "\n" +
                             game.getGameMap().presentPosition(game.player);
                 }
@@ -280,7 +280,7 @@ public class Commands {
                     return game.improveArmor();
                 }
                 case "n" -> {
-                    game.gameState = EXPLORATION;
+                    game.setGameState(EXPLORATION);
                     return "You walked away from the stands, and headed back towards the village." + "\n" +
                             game.getGameMap().presentPosition(game.player);
                 }

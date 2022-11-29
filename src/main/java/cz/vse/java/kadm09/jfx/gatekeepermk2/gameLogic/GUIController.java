@@ -86,7 +86,7 @@ public class GUIController implements Observer{
 
         if (game.getGameMap().getCurrentPosition(game.getPlayer().getPosition().getHorizontal(), game.getPlayer().getPosition().getVertical()).getRoomEnemy() != null &&
                 game.initiative) {
-            game.gameState = COMBAT;
+            game.setGameState(COMBAT);
             game.initiative = false;
         }
 
@@ -108,6 +108,12 @@ public class GUIController implements Observer{
         }
 
         if (game.gameState != EXPLORATION) {
+            GUIQMLook.setDisable(true);
+            GUIQMUp.setDisable(true);
+            GUIQMDown.setDisable(true);
+            GUIQMLeft.setDisable(true);
+            GUIQMRight.setDisable(true);
+        } else if (game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy() != null) {
             GUIQMLook.setDisable(true);
             GUIQMUp.setDisable(true);
             GUIQMDown.setDisable(true);
@@ -167,7 +173,6 @@ public class GUIController implements Observer{
         showArmor(game.player);
         showDamage(game.player);
         showGold(game.player);
-        syncGameState();
     }
 
     @FXML
@@ -177,11 +182,6 @@ public class GUIController implements Observer{
 
     @FXML
     protected void quickmoveNorth () {
-        if(!game.initiative) {
-            present("You cannot escape!");
-            return;
-        }
-
         present(game.player.moveKnight("north",game));
         present(game.gameMap.presentPosition(game.player));
         syncGameState();
@@ -191,17 +191,20 @@ public class GUIController implements Observer{
     protected void quickmoveSotuh () {
         present(game.player.moveKnight("south",game));
         present(game.gameMap.presentPosition(game.player));
+        syncGameState();
     }
 
     @FXML
     protected void quickmoveEast () {
         present(game.player.moveKnight("east",game));
         present(game.gameMap.presentPosition(game.player));
+        syncGameState();
     }
 
     @FXML
     protected void quickmoveWest () {
         present(game.player.moveKnight("west",game));
         present(game.gameMap.presentPosition(game.player));
+        syncGameState();
     }
 }

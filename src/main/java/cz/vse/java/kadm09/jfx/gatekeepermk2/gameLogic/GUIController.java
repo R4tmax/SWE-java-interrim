@@ -3,6 +3,7 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -33,6 +34,12 @@ public class GUIController implements Observer{
     public Button GUIQMLook;
     public Button GUIQMRight;
     public Button GUIQMDown;
+    public Button GUIQCLT;
+    public Button GUIQCLS;
+    public Button GUIQCH;
+    public Button GUIQCS;
+    public Button GUIQCPoS;
+    public Button GUIQCPoR;
 
     @FXML
     private void initialize (){
@@ -205,5 +212,24 @@ public class GUIController implements Observer{
         present(game.player.moveKnight("west",game));
         present(game.gameMap.presentPosition(game.player));
         syncGameState();
+    }
+
+    @FXML
+    public void quickcastLT(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void quickcastLS(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void quickcastH(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void quickcastS(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void quickcastPoS(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void quickcastPoR(ActionEvent actionEvent) {
     }
 }

@@ -3,7 +3,6 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -215,21 +214,33 @@ public class GUIController implements Observer{
     }
 
     @FXML
-    public void quickcastLT(ActionEvent actionEvent) {
+    public void quickcastLT() {
+        present(game.player.lightningTouch(game));
+        syncGameState();
     }
     @FXML
-    public void quickcastLS(ActionEvent actionEvent) {
+    public void quickcastLS() {
+        present(game.player.lightningStrike(game));
+        syncGameState();
     }
     @FXML
-    public void quickcastH(ActionEvent actionEvent) {
+    public void quickcastH() {
+        present(game.player.heal());
+        syncGameState();
     }
     @FXML
-    public void quickcastS(ActionEvent actionEvent) {
+    public void quickcastS() {
+        present(game.player.holySmite(game));
+        syncGameState();
     }
     @FXML
-    public void quickcastPoS(ActionEvent actionEvent) {
+    public void quickcastPoS() {
+        present(game.player.prayerOfStrength(game));
+        syncGameState();
     }
     @FXML
-    public void quickcastPoR(ActionEvent actionEvent) {
+    public void quickcastPoR() {
+        present(game.player.prayerOfResolve(game));
+        syncGameState();
     }
 }

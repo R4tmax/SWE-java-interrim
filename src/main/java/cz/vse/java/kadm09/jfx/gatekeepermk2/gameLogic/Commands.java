@@ -1,5 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
+
 import java.util.Scanner;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
@@ -17,6 +19,7 @@ public class Commands {
         Scanner input = new Scanner(System.in);
         System.out.println(" > ");
         String enteredText = input.nextLine();
+        enteredText = TextHandler.simplifyInput(enteredText);
         return commandList(enteredText.toLowerCase(), game);
     }
 

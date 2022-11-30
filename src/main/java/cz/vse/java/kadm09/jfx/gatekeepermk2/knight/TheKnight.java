@@ -116,8 +116,6 @@ public class TheKnight implements ObservedElement {
         if (this.currentMana > 0) toPresent += "Current mana: " + this.currentMana ;
         else toPresent += "You are out of mana!";
         toPresent += "\n";
-
-        toPresent += "Current mana: " + this.currentMana + "\n";
         toPresent += "Armor value: " + this.armor + "\n";
         toPresent += "Damage: " + this.damage + "\n";
         toPresent += "Gold held: " + this.goldHeld + "\n";

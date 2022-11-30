@@ -64,13 +64,12 @@ public class GUIController implements Observer{
         GUIOutput.appendText("\n");
     }
 
-    //TODO:OBSERVER FOR GAMESTATE
     @FXML
     public void acceptInput() {
         syncGameState();
 
         String GUIUserInput = GUIInput.getText();
-        GUIOutput.appendText("> " + GUIUserInput + "\n");
+        GUIOutput.appendText("> " + GUIUserInput);
         GUIInput.clear();
 
         handleInput(GUIUserInput);

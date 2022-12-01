@@ -1,6 +1,7 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -78,6 +79,7 @@ public class GUIController implements Observer{
         GUIOutput.appendText("> " + GUIUserInput);
         GUIInput.clear();
 
+        GUIUserInput = TextHandler.simplifyInput(GUIUserInput);
         handleInput(GUIUserInput);
 
         GUIInput.requestFocus();

@@ -1,5 +1,18 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.enemies;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor on 3.12.2022
+ *
+ * <p>
+ *     Super class for the game enemies.
+ *     Holds the overloaded constructors.
+ * </p>
+ *
+ * @see TheBrute
+ * @see TheMatriarch
+ * @see TheHag
+ */
 public abstract class Monster implements HostileActions{
     protected String name;
     protected int health;
@@ -67,23 +80,5 @@ public abstract class Monster implements HostileActions{
         this.damage = damage;
         this.goldDrop = goldDrop;
     }
-
-    /**
-     * Auxiliary function preventing damage values
-     * of Monster subtypes going negative, which would
-     * lead to healing the player instead of damaging him.
-     * See respective implementations of attackPattern in
-     * respective subtypes
-     *
-     * @param damageValue Integer value representing the damage calculated after compared to Knight armor value
-     * @return Integer, either unchanged damageValue if after armor calculation number is still greater than one,
-     *          1 if number is less than 1, which would result erroneous operations with health/mana values of TheKnight class.
-     *
-     */
-    protected int accountForArmor (int damageValue) {
-        return Math.max(damageValue, 1);
-
-    }
-
 
 }

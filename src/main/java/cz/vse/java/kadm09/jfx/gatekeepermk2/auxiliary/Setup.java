@@ -8,6 +8,22 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
 import java.util.Date;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor on 3.12.2022
+ *
+ * <p>
+ *     Auxiliary class responsible for handling the universal
+ *     load game operations.
+ * <p>
+ *     Take note that GUI version relies on specific calls
+ *     to the Loader class and GUI Controller initialize methods
+ * </p>
+ *
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Main
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GUIController
+ * @see Game
+ */
 public class Setup {
 
     private static final Date todayIs = new Date();
@@ -16,16 +32,28 @@ public class Setup {
         return GameState.EXPLORATION;
     }
 
+    /**
+     * Simple constructor extender of the Map class
+     * @see Map
+     * @return gameMap - Instance of the Map class with "default" game state.
+     */
     public static Map createMap(){
         Map gameMap = new Map();
         gameMap.fillMap();
         return gameMap;
     }
 
+    /**
+     * Redirected call to the Knight Constructor
+     * @return TheKnight - returns the instance of the player character with the default stat values.
+     */
     public static TheKnight createKnight(){
         return new TheKnight(TheKnight.MAX_HEALTH,TheKnight.MAX_MANA,4,30,500,new Coordinates(4,2),false);
     }
 
+    /**
+     * @return Returns a String block to be printed upon game launch.
+     */
     public static String introMessage () {
         return """
                 Welcome to my adventure!
@@ -54,6 +82,11 @@ public class Setup {
     }
 
 
+    /**
+     * Fills the dialogue field of the Game param with the individual text lines
+     * which can be called by the player upon interacting with the spawn room.
+     * @param game Game instance which is currently being constructed
+     */
     public static void initializeDialogues(Game game) {
         game.getDialogueScout().add("Hail, Knight of the King! *He hits his chest-plate with his right arm*");
         game.getDialogueScout().add("""

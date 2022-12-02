@@ -2,6 +2,17 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.enemies;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 
+/**
+ * @author Martin Kadlec
+ * @version Last Refactor on 3.12.2022
+ *
+ * <p>
+ *      Subtype of the Monster class
+ *      represents on of the two basic enemies player can encounter.
+ * </p>
+ * @see Monster
+ * @see HostileActions
+ */
 public class TheBrute extends Monster implements HostileActions {
 
 
@@ -9,6 +20,10 @@ public class TheBrute extends Monster implements HostileActions {
         super(name, health, damage, goldDrop);
     }
 
+    /**
+     * @return String with a initial message to portray to the player.
+     * Currently discontinued.
+     */
     @Override
     public String initialMessage() {
 
@@ -20,6 +35,14 @@ public class TheBrute extends Monster implements HostileActions {
                """;
     }
 
+    /**
+     * In the case of the Brute, simply apply its damage to the player,
+     * as the brute ignores armor.
+     * Take not that in the original version Brute attack pattern was different.
+     *
+     * @param game Game instance which called the method and holds the player data.
+     * @return String description of how much damage has been dealt to the player and how the monster bahves.
+     */
     @Override
     public String attackPattern(Game game) {
         int damageDealt = this.damage;

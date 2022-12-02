@@ -8,12 +8,15 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.image.Image?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GUIController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -68,76 +71,64 @@
     </SplitPane>
     <GridPane GridPane.rowIndex="2">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <BorderPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                    GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+        <BorderPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
            <left>
-               <Button fx:id="GUIQMLeft" minHeight="100.0" minWidth="105.0" mnemonicParsing="false"
-                       onAction="#quickmoveWest" styleClass="leftArrow" stylesheets="@styles.css" text="West"
-                       BorderPane.alignment="CENTER"/>
+               <Button fx:id="GUIQMLeft" minHeight="100.0" minWidth="105.0" mnemonicParsing="false" onAction="#quickmoveWest" styleClass="leftArrow" stylesheets="@styles.css" text="West" BorderPane.alignment="CENTER" />
            </left>
            <top>
-               <Button fx:id="GUIQMUp" minHeight="100.0" minWidth="100.0" mnemonicParsing="false"
-                       onAction="#quickmoveNorth" styleClass="upArrow" stylesheets="@styles.css" text="North"
-                       BorderPane.alignment="CENTER"/>
+               <Button fx:id="GUIQMUp" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#quickmoveNorth" styleClass="upArrow" stylesheets="@styles.css" text="North" BorderPane.alignment="CENTER" />
            </top>
            <center>
-               <Button fx:id="GUIQMLook" minHeight="100.0" minWidth="100.0" mnemonicParsing="false"
-                       onAction="#quickmoveLook" styleClass="" stylesheets="@styles.css" text="Look around"
-                       BorderPane.alignment="CENTER"/>
+               <Button fx:id="GUIQMLook" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#quickmoveLook" styleClass="" stylesheets="@styles.css" text="Look around" BorderPane.alignment="CENTER" />
            </center>
            <right>
-               <Button fx:id="GUIQMRight" minHeight="100.0" minWidth="105.0" mnemonicParsing="false"
-                       onAction="#quickmoveEast" styleClass="rightArrow" stylesheets="@styles.css" text="East"
-                       BorderPane.alignment="CENTER"/>
+               <Button fx:id="GUIQMRight" minHeight="100.0" minWidth="105.0" mnemonicParsing="false" onAction="#quickmoveEast" styleClass="rightArrow" stylesheets="@styles.css" text="East" BorderPane.alignment="CENTER" />
            </right>
            <bottom>
-               <Button fx:id="GUIQMDown" minHeight="100.0" minWidth="100.0" mnemonicParsing="false"
-                       onAction="#quickmoveSotuh" styleClass="downArrow" stylesheets="@styles.css" text="South"
-                       BorderPane.alignment="CENTER"/>
+               <Button fx:id="GUIQMDown" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#quickmoveSotuh" styleClass="downArrow" stylesheets="@styles.css" text="South" BorderPane.alignment="CENTER" />
            </bottom>
         </BorderPane>
         <GridPane GridPane.columnIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="147.79996337890626" minHeight="10.0" prefHeight="96.59992065429688"
-                                vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="243.00007095336915" minHeight="10.0" prefHeight="210.20007934570313"
-                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="147.79996337890626" minHeight="10.0" prefHeight="96.59992065429688" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="243.00007095336915" minHeight="10.0" prefHeight="210.20007934570313" vgrow="SOMETIMES" />
             </rowConstraints>
             <GridPane.margin>
-                <Insets left="5.0" right="5.0"/>
+                <Insets left="5.0" right="5.0" />
             </GridPane.margin>
             <GridPane GridPane.rowIndex="1">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
-                <Button fx:id="GUIQCLT" onAction="#quickcastLT"  stylesheets="@styles.css" styleClass="offensiveSpell" mnemonicParsing="false" prefHeight="73.0" prefWidth="181.0" text="Lightning Touch"/>
-                <Button fx:id="GUIQCLS" onAction="#quickcastLS"  stylesheets="@styles.css" styleClass="offensiveSpell" mnemonicParsing="false" prefHeight="74.0" prefWidth="181.0" text="Lightning Strike"
-                        GridPane.columnIndex="1"/>
-                <Button fx:id="GUIQCH" onAction="#quickcastH" stylesheets="@styles.css" styleClass="healingSpell" mnemonicParsing="false" prefHeight="80.0" prefWidth="206.0" text="Heal"
-                        GridPane.rowIndex="1"/>
-                <Button fx:id="GUIQCS" onAction="#quickcastS" stylesheets="@styles.css" styleClass="semioffesniveSpell" mnemonicParsing="false" prefHeight="94.0" prefWidth="194.0" text="Smite"
-                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Button fx:id="GUIQCPoS" onAction="#quickcastPoS" stylesheets="@styles.css" styleClass="utilitySpell" mnemonicParsing="false" prefHeight="79.0" prefWidth="197.0" text="Prayer Of Strength"
-                        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Button fx:id="GUIQCPoR" onAction="#quickcastPoR" stylesheets="@styles.css" styleClass="utilitySpell" mnemonicParsing="false" prefHeight="77.0" prefWidth="240.0" text="Prayer of Resolve"
-                        GridPane.rowIndex="2"/>
+                <Button fx:id="GUIQCLT" mnemonicParsing="false" onAction="#quickcastLT" prefHeight="73.0" prefWidth="181.0" styleClass="offensiveSpell" stylesheets="@styles.css" text="Lightning Touch" />
+                <Button fx:id="GUIQCLS" mnemonicParsing="false" onAction="#quickcastLS" prefHeight="74.0" prefWidth="181.0" styleClass="offensiveSpell" stylesheets="@styles.css" text="Lightning Strike" GridPane.columnIndex="1" />
+                <Button fx:id="GUIQCH" mnemonicParsing="false" onAction="#quickcastH" prefHeight="80.0" prefWidth="206.0" styleClass="healingSpell" stylesheets="@styles.css" text="Heal" GridPane.rowIndex="1" />
+                <Button fx:id="GUIQCS" mnemonicParsing="false" onAction="#quickcastS" prefHeight="94.0" prefWidth="194.0" styleClass="semioffesniveSpell" stylesheets="@styles.css" text="Smite" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="GUIQCPoS" mnemonicParsing="false" onAction="#quickcastPoS" prefHeight="79.0" prefWidth="197.0" styleClass="utilitySpell" stylesheets="@styles.css" text="Prayer Of Strength" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="GUIQCPoR" mnemonicParsing="false" onAction="#quickcastPoR" prefHeight="77.0" prefWidth="240.0" styleClass="utilitySpell" stylesheets="@styles.css" text="Prayer of Resolve" GridPane.rowIndex="2" />
             </GridPane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+                <ImageView fx:id="GUIGamestateIcon" fitHeight="97.0" fitWidth="332.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@explore.png"/>
+                </ImageView>
+            </Pane>
         </GridPane>
     </GridPane>
 </GridPane>

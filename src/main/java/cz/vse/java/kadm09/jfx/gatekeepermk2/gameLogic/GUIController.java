@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
@@ -40,6 +42,7 @@ public class GUIController implements Observer{
     public Button GUIQCS;
     public Button GUIQCPoS;
     public Button GUIQCPoR;
+    public ImageView GUIGamestateIcon;
 
     @FXML
     private void initialize (){
@@ -60,6 +63,8 @@ public class GUIController implements Observer{
 
         goldLabel.appendText("GOLD HELD");
         showGold(game.player);
+
+        centerImage();
 
         present(game.gameMap.presentPosition(game.player));
         Platform.runLater(() -> GUIInput.requestFocus());
@@ -245,4 +250,28 @@ public class GUIController implements Observer{
         present(game.player.prayerOfResolve(game));
         syncGameState();
     }
+
+    /**
+     * <a href="https://stackoverflow.com/questions/32781362/centering-an-image-in-an-imageview">Original SO reference</a>
+     */
+    public void centerImage() {
+        Image img = GUIGamestateIcon.getImage();
+        if (img != null) {
+            double w;
+            double h;
+
+            double ratioX = GUIGamestateIcon.getFitWidth() / img.getWidth();
+            double ratioY = GUIGamestateIcon.getFitHeight() / img.getHeight();
+
+            double reducCoeff = Math.min(ratioX, ratioY);
+
+            w = img.getWidth() * reducCoeff;
+            h = img.getHeight() * reducCoeff;
+
+            GUIGamestateIcon.setX((GUIGamestateIcon.getFitWidth() - w) / 2);
+            GUIGamestateIcon.setY((GUIGamestateIcon.getFitHeight() - h) / 2);
+
+        }
+    }
+
 }

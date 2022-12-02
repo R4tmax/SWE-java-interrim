@@ -45,3 +45,23 @@
     -fx-text-fill: #f5b342;
     -fx-font-weight: bold;
 }
+
+.offensiveSpell {
+    -fx-background-color: #f54257;
+    -fx-border-color: #000000;
+}
+
+.semioffesniveSpell {
+    -fx-background-color: #ca03fc;
+    -fx-border-color: #000000;
+}
+
+.healingSpell {
+    -fx-background-color: #a6db9c;
+    -fx-border-color: #000000;
+}
+
+.utilitySpell {
+    -fx-background-color: #6b9be8;
+    -fx-border-color: #000000;
+}

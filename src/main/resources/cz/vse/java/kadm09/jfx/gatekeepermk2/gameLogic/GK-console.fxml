@@ -126,16 +126,16 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
-                <Button fx:id="GUIQCLT" onAction="#quickcastLT" mnemonicParsing="false" prefHeight="73.0" prefWidth="181.0" text="Lightning Touch"/>
-                <Button fx:id="GUIQCLS" onAction="#quickcastLS" mnemonicParsing="false" prefHeight="74.0" prefWidth="181.0" text="Lightning Strike"
+                <Button fx:id="GUIQCLT" onAction="#quickcastLT"  stylesheets="@styles.css" styleClass="offensiveSpell" mnemonicParsing="false" prefHeight="73.0" prefWidth="181.0" text="Lightning Touch"/>
+                <Button fx:id="GUIQCLS" onAction="#quickcastLS"  stylesheets="@styles.css" styleClass="offensiveSpell" mnemonicParsing="false" prefHeight="74.0" prefWidth="181.0" text="Lightning Strike"
                         GridPane.columnIndex="1"/>
-                <Button fx:id="GUIQCH" onAction="#quickcastH" mnemonicParsing="false" prefHeight="80.0" prefWidth="206.0" text="Heal"
+                <Button fx:id="GUIQCH" onAction="#quickcastH" stylesheets="@styles.css" styleClass="healingSpell" mnemonicParsing="false" prefHeight="80.0" prefWidth="206.0" text="Heal"
                         GridPane.rowIndex="1"/>
-                <Button fx:id="GUIQCS" onAction="#quickcastS" mnemonicParsing="false" prefHeight="94.0" prefWidth="194.0" text="Smite"
+                <Button fx:id="GUIQCS" onAction="#quickcastS" stylesheets="@styles.css" styleClass="semioffesniveSpell" mnemonicParsing="false" prefHeight="94.0" prefWidth="194.0" text="Smite"
                         GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Button fx:id="GUIQCPoS" onAction="#quickcastPoS" mnemonicParsing="false" prefHeight="79.0" prefWidth="197.0" text="Prayer Of Strength"
+                <Button fx:id="GUIQCPoS" onAction="#quickcastPoS" stylesheets="@styles.css" styleClass="utilitySpell" mnemonicParsing="false" prefHeight="79.0" prefWidth="197.0" text="Prayer Of Strength"
                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Button fx:id="GUIQCPoR" onAction="#quickcastPoR" mnemonicParsing="false" prefHeight="77.0" prefWidth="240.0" text="Prayer of Resolve"
+                <Button fx:id="GUIQCPoR" onAction="#quickcastPoR" stylesheets="@styles.css" styleClass="utilitySpell" mnemonicParsing="false" prefHeight="77.0" prefWidth="240.0" text="Prayer of Resolve"
                         GridPane.rowIndex="2"/>
             </GridPane>
         </GridPane>

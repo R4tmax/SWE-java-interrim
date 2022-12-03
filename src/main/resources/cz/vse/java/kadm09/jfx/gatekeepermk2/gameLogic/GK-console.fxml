@@ -33,10 +33,10 @@
         <Menu mnemonicParsing="false" text="New Game">
             <MenuItem mnemonicParsing="false" text="Close" />
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Quit Game">
             <MenuItem mnemonicParsing="false" text="Delete" />
         </Menu>
-        <Menu mnemonicParsing="false" text="placeholder">
+        <Menu mnemonicParsing="false" text="Help">
             <MenuItem mnemonicParsing="false" text="About" />
         </Menu>
     </MenuBar>

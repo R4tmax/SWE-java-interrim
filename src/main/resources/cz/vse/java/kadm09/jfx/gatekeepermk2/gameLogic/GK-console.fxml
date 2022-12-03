@@ -3,12 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,17 +27,6 @@
         <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <TextField fx:id="GUIInput" onAction="#acceptInput" GridPane.rowIndex="3" />
-    <MenuBar>
-        <Menu mnemonicParsing="false" text="New Game">
-            <MenuItem mnemonicParsing="false" text="Close" />
-        </Menu>
-        <Menu mnemonicParsing="false" text="Quit Game">
-            <MenuItem mnemonicParsing="false" text="Delete" />
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About" />
-        </Menu>
-    </MenuBar>
     <SplitPane fx:id="GUIOutputSplitter" dividerPositions="0.3" GridPane.rowIndex="1">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <GridPane prefHeight="343.0" prefWidth="302.0">
@@ -132,4 +119,9 @@
         </GridPane>
       <ListView prefHeight="200.0" prefWidth="200.0" />
     </GridPane>
+    <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <Button mnemonicParsing="false" text="New Game"/>
+        <Button mnemonicParsing="false" text="Quit Game"/>
+        <Button mnemonicParsing="false" text="Help"/>
+    </ToolBar>
 </GridPane>

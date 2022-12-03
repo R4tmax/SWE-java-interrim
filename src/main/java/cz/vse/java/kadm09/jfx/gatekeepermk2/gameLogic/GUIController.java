@@ -4,6 +4,7 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -274,4 +275,12 @@ public class GUIController implements Observer{
         }
     }
 
+    public void startNewGame(ActionEvent actionEvent) {
+    }
+
+    public void quitGame(ActionEvent actionEvent) {
+    }
+
+    public void showHelp(ActionEvent actionEvent) {
+    }
 }

@@ -120,8 +120,8 @@
       <ListView prefHeight="200.0" prefWidth="200.0" />
     </GridPane>
     <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <Button mnemonicParsing="false" text="New Game"/>
-        <Button mnemonicParsing="false" text="Quit Game"/>
-        <Button mnemonicParsing="false" text="Help"/>
+        <Button onAction="#startNewGame" mnemonicParsing="false" text="New Game"/>
+        <Button onAction="#quitGame" mnemonicParsing="false" text="Quit Game"/>
+        <Button onAction="#showHelp" mnemonicParsing="false" text="Help"/>
     </ToolBar>
 </GridPane>

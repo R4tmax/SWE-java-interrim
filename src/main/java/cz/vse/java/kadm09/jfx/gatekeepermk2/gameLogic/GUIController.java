@@ -4,14 +4,18 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+import java.util.Objects;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
@@ -275,12 +279,21 @@ public class GUIController implements Observer{
         }
     }
 
-    public void startNewGame(ActionEvent actionEvent) {
+    public void startNewGame() {
     }
 
-    public void quitGame(ActionEvent actionEvent) {
+    public void quitGame() {
+        System.exit(0);
     }
 
-    public void showHelp(ActionEvent actionEvent) {
+    public void showHelp() {
+        Stage stage = new Stage();
+        String url = Objects.requireNonNull(getClass().getResource("help.html")).toExternalForm();
+        WebView webView = new WebView();
+        webView.getEngine().load(url);
+        Scene scene = new Scene(webView);
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

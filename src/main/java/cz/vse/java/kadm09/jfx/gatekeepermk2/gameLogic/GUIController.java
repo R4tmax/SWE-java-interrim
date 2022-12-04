@@ -301,6 +301,13 @@ public class GUIController implements Observer{
     }
 
 
+    public void handleClickInventory() {
+        Consumable toUse = GUIInventoryList.getSelectionModel().getSelectedItem();
+        if(toUse==null) return;
+        present(game.player.useItem(game,toUse.getName()));
+    }
+
+
 
 
 
@@ -348,4 +355,5 @@ public class GUIController implements Observer{
         stage.show();
 
     }
+
 }

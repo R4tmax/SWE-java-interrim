@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -63,19 +64,25 @@ public class GUIController implements Observer{
         Platform.runLater(() -> GUIInput.requestFocus());
 
 
-        //fillInventoryList();
-
-        /*GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
-            private void updateItem(Consumable consumable, boolean empty) {
+        GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
+            @Override
+            protected void updateItem(Consumable consumable, boolean empty) {
                 super.updateItem(consumable, empty);
                 if(!empty) {
                     setText(consumable.getName());
+                    URL imageUrl = getClass().getResource(TextHandler.simplifyInput(consumable.getName())+".png");
+                    if(imageUrl==null) return;
+                    ImageView iw = new ImageView(imageUrl.toString());
+                    iw.setFitHeight(50);
+                    iw.setPreserveRatio(true);
+                    setGraphic(iw);
+
                 } else {
                     setText(null);
                     setGraphic(null);
                 }
             }
-        }); */
+        });
 
     }
 

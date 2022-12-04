@@ -12,7 +12,7 @@ import static java.lang.System.exit;
 /**
  *
  *  @author Martin Kadlec
- *  @version 1.0.0
+ *  @version Last refactor on 4.12.2022
  * <p>
  *      Main class of the program, handles the initial splitting
  *      of the CLI and GUI accesses to the program

@@ -19,6 +19,14 @@ import java.util.Objects;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
 
+/**
+ * @author Martin Kadelec
+ * @version Last refactor on 4.12.2022
+ * <p>
+ * Controller for the GKConsole JavaFX instance and related FXML.
+ * Invoked via the loader from Main.
+ * </p>
+ */
 public class GUIController implements Observer{
     public TextArea GUIHealth;
     public TextArea GUIMana;
@@ -49,6 +57,11 @@ public class GUIController implements Observer{
     public ImageView GUIGamestateIcon;
     public ListView<Consumable> GUIInventoryList;
 
+    /**
+     * Standard JFX setup method.
+     * Called after launch by the Main class
+     * and upon invocation of new game.
+     */
     @FXML
     private void initialize (){
 
@@ -64,6 +77,11 @@ public class GUIController implements Observer{
 
 
         GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
+            /**
+             * Modified callback method used to handle Item projection to the GUI
+             * @param consumable Consumable item held within the ListView
+             * @param empty Boolean flag representing data presence
+             */
             @Override
             protected void updateItem(Consumable consumable, boolean empty) {
                 super.updateItem(consumable, empty);
@@ -85,6 +103,9 @@ public class GUIController implements Observer{
 
     }
 
+    /**
+     * Sets labels for the GUI stat fields
+     */
     private void prepareLabels() {
         healthLabel.clear();
         healthLabel.appendText("HEALTH:");
@@ -107,12 +128,27 @@ public class GUIController implements Observer{
         showGold(game.player);
     }
 
+    /**
+     * Standard ouput method for the controller, takes the String values and appends them to the Output
+     * with extra whitespaces for better readability
+     * @param text String value to output to the GKConsole
+     */
     @FXML
     private void present(String text){
         GUIOutput.appendText(text);
         GUIOutput.appendText("\n");
     }
 
+    /**
+     * Initial input processing method of the controller.
+     * Provides command readback for the user for clarity.
+     * Then strips unnecessary chars and calls further input processing.
+     * <p>
+     * Syncing method is called at the beginning and after each call to maintain GUI synced
+     * to the rest of the game data
+     * @see #handleInput(String)
+     * @see #syncGameState()
+     */
     @FXML
     public void acceptInput() {
         syncGameState();
@@ -129,6 +165,19 @@ public class GUIController implements Observer{
     }
 
 
+    /**
+     * First, checks the gamestate of the game, this is done
+     * to handle transitioning into combat.
+     * Then calls the command list and presents the output value.
+     * Sync method is called between states to ensure data seen by the player correspond
+     * to the actual gamestate.
+     *
+     * @param input Validate string to compare against command list
+     *
+     * @see Commands
+     * @see #syncGameState()
+     * @see #present(String)
+     */
     private void handleInput(String input) {
 
         syncGameState();
@@ -148,6 +197,13 @@ public class GUIController implements Observer{
         GUIInput.requestFocus();
     }
 
+    /**
+     * Auxiliary method called on demand by other methods.
+     * Checks the gameStatus as per the Game template,
+     * depending on the state of flags turns various GUI elements
+     * ON/OFF. Special care is given to the combat trainstions.
+     * Overrides gameStateIcon in special cases.
+     */
     private void syncGameState() {
         present(game.checkGameStatus());
         if(game.player.isDead()) {
@@ -224,31 +280,66 @@ public class GUIController implements Observer{
         }
     }
 
+    /**
+     * Resets and displays updated health value of the player
+     * in the GUI.
+     *
+     * @param player Instance of the player whose health should be displayed
+     */
         private void showHealth(TheKnight player) {
         GUIHealth.clear();
         GUIHealth.appendText(String.valueOf(player.getCurrentHealth()));
     }
 
+    /**
+     * Resets and displays updated mana value of the player
+     * in the GUI.
+     *
+     * @param player Instance of the player whose mana should be displayed
+     */
     private void showMana(TheKnight player) {
         GUIMana.clear();
         GUIMana.appendText(String.valueOf(player.getCurrentMana()));
     }
 
+    /**
+     * Resets and displays updated armor value of the player
+     * in the GUI.
+     *
+     * @param player Instance of the player whose armor should be displayed
+     */
     private void showArmor(TheKnight player) {
         GUIArmor.clear();
         GUIArmor.appendText(String.valueOf(player.getArmor()));
     }
 
+    /**
+     * Resets and displays updated damage value of the player
+     * in the GUI.
+     *
+     * @param player Instance of the player whose damage should be displayed
+     */
     private void showDamage(TheKnight player) {
         GUIAttack.clear();
         GUIAttack.appendText(String.valueOf(player.getDamage()));
     }
 
+    /**
+     * Resets and displays updated gold held value of the player
+     * in the GUI.
+     *
+     * @param player Instance of the player whose money should be displayed
+     */
     private void showGold(TheKnight player) {
         GUIGold.clear();
         GUIGold.appendText(String.valueOf(player.getGoldHeld()));
     }
 
+    /**
+     * Method called upon observer notifications.
+     * Updates the stat labels and inventory
+     * listView
+     */
     @Override
     public void updateStatus() {
         showHealth(game.player);
@@ -260,11 +351,17 @@ public class GUIController implements Observer{
         fillInventoryList();
     }
 
+    /**
+     * Allows the player to look around without using text input
+     */
     @FXML
     protected void quickmoveLook () {
         present(game.gameMap.presentPosition(game.player));
     }
 
+    /**
+     * Allows the player to move without using text input
+     */
     @FXML
     protected void quickmoveNorth () {
         present(game.player.moveKnight("north",game));
@@ -272,6 +369,9 @@ public class GUIController implements Observer{
         syncGameState();
     }
 
+    /**
+     * Allows the player to move without using text input
+     */
     @FXML
     protected void quickmoveSotuh () {
         present(game.player.moveKnight("south",game));
@@ -279,6 +379,9 @@ public class GUIController implements Observer{
         syncGameState();
     }
 
+    /**
+     * Allows the player to move without using text input
+     */
     @FXML
     protected void quickmoveEast () {
         present(game.player.moveKnight("east",game));
@@ -286,6 +389,9 @@ public class GUIController implements Observer{
         syncGameState();
     }
 
+    /**
+     * Allows the player to move without using text input
+     */
     @FXML
     protected void quickmoveWest () {
         present(game.player.moveKnight("west",game));
@@ -293,37 +399,67 @@ public class GUIController implements Observer{
         syncGameState();
     }
 
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastLT() {
         present(game.player.lightningTouch(game));
         syncGameState();
     }
+
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastLS() {
         present(game.player.lightningStrike(game));
         syncGameState();
     }
+
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastH() {
         present(game.player.heal());
         syncGameState();
     }
+
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastS() {
         present(game.player.holySmite(game));
         syncGameState();
     }
+
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastPoS() {
         present(game.player.prayerOfStrength(game));
         syncGameState();
     }
+
+    /**
+     * Allows the player to cast spells without using text input
+     */
     @FXML
     public void quickcastPoR() {
         present(game.player.prayerOfResolve(game));
         syncGameState();
     }
 
+    /**
+     * Grabs the current inventory contents of the player and displays them on
+     * the GUI. Auxiliary call is made to the Cell factory, hidden to the programmer.
+     * Terminates early if the inventory is empty.
+     *
+     * @see #initialize()
+     */
     public void fillInventoryList () {
         GUIInventoryList.getItems().clear();
         if (game.player.inventory.size() == 0) return;
@@ -334,6 +470,12 @@ public class GUIController implements Observer{
     }
 
 
+    /**
+     * Facilitates interaction with the inventory upon the player click.
+     * Cancels NULL calls. otherwise invokes related Knight method
+     *
+     * @see TheKnight#useItem(Game, String)
+     */
     public void handleClickInventory() {
         Consumable toUse = GUIInventoryList.getSelectionModel().getSelectedItem();
         if(toUse==null) return;
@@ -345,6 +487,7 @@ public class GUIController implements Observer{
 
 
     /**
+     * Centers gameStateIcon within its div.
      * <a href="https://stackoverflow.com/questions/32781362/centering-an-image-in-an-imageview">Original SO reference</a>
      */
     public void centerImage() {
@@ -367,6 +510,10 @@ public class GUIController implements Observer{
         }
     }
 
+    /**
+     * Checks for current gamestate and replaces default Icon as needed
+     * does not work well with switch statement for some reason.
+     */
     private void changeIcon() {
         Enum<GameState> state = game.gameState;
         Image toShow;
@@ -396,6 +543,14 @@ public class GUIController implements Observer{
         GUIGamestateIcon.setImage(toShow);
     }
 
+    /**
+     * Handles all the necessary GUI and BE
+     * calls to quickly recreate new game.
+     * Take note that fresh instance of the Game class
+     * will be used to handle all the interactions upon invocation.
+     *
+     * @see Game
+     */
     public void startNewGame() {
         game = new Game();
         initialize();
@@ -417,10 +572,18 @@ public class GUIController implements Observer{
         GUIQCLT.setDisable(false);
     }
 
+    /**
+     * Terminates the game upon click
+     * without the need to use text input.
+     * Also accessible in each gamestate.
+     */
     public void quitGame() {
         System.exit(0);
     }
 
+    /**
+     * Displays the master manual for the game.
+     */
     public void showHelp() {
         Stage stage = new Stage();
         String url = Objects.requireNonNull(getClass().getResource("help.html")).toExternalForm();

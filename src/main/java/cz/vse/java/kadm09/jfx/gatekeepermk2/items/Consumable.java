@@ -68,11 +68,7 @@ public class Consumable extends Item implements PickupHandling {
 
     @Override
     public String toString() {
-        return "Consumable{" +
-                "itemType=" + consumableType +
-                ", name='" + name + '\'' +
-                ", effectiveValue=" + effectiveValue +
-                '}';
+        return super.name;
     }
 
 }

@@ -33,7 +33,8 @@ public enum GameState {
     HUNTSMAN,
     INN,
     SPELLCAST,
-    ENDGAME
+    ENDGAME,
+    DEATH
 
 
 

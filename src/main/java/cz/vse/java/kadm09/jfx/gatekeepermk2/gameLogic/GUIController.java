@@ -154,6 +154,21 @@ public class GUIController implements Observer{
             present("You have died, better luck next time!");
             GUIOutput.setDisable(true);
             GUIInput.setDisable(true);
+            GUIInventoryList.setDisable(true);
+            GUIQMLook.setDisable(true);
+            GUIQMUp.setDisable(true);
+            GUIQMDown.setDisable(true);
+            GUIQMLeft.setDisable(true);
+            GUIQMRight.setDisable(true);
+            GUIQCH.setDisable(true);
+            GUIQCS.setDisable(true);
+            GUIQCPoR.setDisable(true);
+            GUIQCPoS.setDisable(true);
+            GUIQCLS.setDisable(true);
+            GUIQCLT.setDisable(true);
+            Image toShow = new Image(String.valueOf(getClass().getResource("gameover.png")));
+            GUIGamestateIcon.setImage(toShow);
+            return;
         }
 
         changeIcon();
@@ -192,6 +207,20 @@ public class GUIController implements Observer{
                     "Your task is done, rest easy, Knight of the King!.");
             GUIOutput.setDisable(true);
             GUIInput.setDisable(true);
+            GUIInventoryList.setDisable(true);
+            GUIQMLook.setDisable(true);
+            GUIQMUp.setDisable(true);
+            GUIQMDown.setDisable(true);
+            GUIQMLeft.setDisable(true);
+            GUIQMRight.setDisable(true);
+            GUIQCH.setDisable(true);
+            GUIQCS.setDisable(true);
+            GUIQCPoR.setDisable(true);
+            GUIQCPoS.setDisable(true);
+            GUIQCLS.setDisable(true);
+            GUIQCLT.setDisable(true);
+            Image toShow = new Image(String.valueOf(getClass().getResource("victory.png")));
+            GUIGamestateIcon.setImage(toShow);
         }
     }
 
@@ -359,6 +388,8 @@ public class GUIController implements Observer{
             toShow = new Image(String.valueOf(getClass().getResource("bow.png")));
         }else if (state.equals(ARMORSMITH)) {
             toShow = new Image(String.valueOf(getClass().getResource("armor.png")));
+        }else if (state.equals(ENDGAME)) {
+            toShow = new Image(String.valueOf(getClass().getResource("victory.png")));
         } else {
             toShow = new Image(String.valueOf(getClass().getResource("nourishingbread.png")));
         }
@@ -372,6 +403,18 @@ public class GUIController implements Observer{
         fillInventoryList();
         GUIInput.setDisable(false);
         GUIOutput.setDisable(false);
+        GUIInventoryList.setDisable(false);
+        GUIQMLook.setDisable(false);
+        GUIQMUp.setDisable(false);
+        GUIQMDown.setDisable(false);
+        GUIQMLeft.setDisable(false);
+        GUIQMRight.setDisable(false);
+        GUIQCH.setDisable(false);
+        GUIQCS.setDisable(false);
+        GUIQCPoR.setDisable(false);
+        GUIQCPoS.setDisable(false);
+        GUIQCLS.setDisable(false);
+        GUIQCLT.setDisable(false);
     }
 
     public void quitGame() {

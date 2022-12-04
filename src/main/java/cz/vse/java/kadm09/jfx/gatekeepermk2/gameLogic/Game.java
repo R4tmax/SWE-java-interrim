@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.ENDGAME;
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
 
 public class Game implements ObservedElement{
@@ -145,7 +146,10 @@ public class Game implements ObservedElement{
             this.gameMap.getCurrentPosition(0,2).setLocked(false);
 
 
-        if (this.gameMap.getCurrentPosition(0,2).getRoomEnemy() == null) this.endgame = true;
+        if (this.gameMap.getCurrentPosition(0,2).getRoomEnemy() == null) {
+            this.endgame = true;
+            this.setGameState(ENDGAME);
+        }
 
     }
 

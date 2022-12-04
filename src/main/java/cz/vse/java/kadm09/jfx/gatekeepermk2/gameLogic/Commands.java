@@ -150,6 +150,9 @@ public class Commands {
                 case "showinventory" -> {
                     return game.player.presentInventoryContent();
                 }
+                case "status" -> {
+                    return game.player.presentKnightStatusExploration();
+                }
                 case "useitem" -> {
                     String attackResolution = game.getGameMap().getCurrentPosition(game.player.getPosition().getHorizontal(),game.player.getPosition().getVertical()).getRoomEnemy().attackPattern(game);
                     game.setGameState(INVENTORY);

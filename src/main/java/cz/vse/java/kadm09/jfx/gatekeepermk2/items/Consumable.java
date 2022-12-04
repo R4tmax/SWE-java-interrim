@@ -3,6 +3,20 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.items;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor 4.12.2022.
+ *
+ * <p>
+ *     One of the Item subtypes.
+ *     Represents the consumables which the player needs to use actively
+ * </p>
+ *
+ * @see TheKnight
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.Map
+ * @see Item
+ * @see PickupHandling
+ */
 public class Consumable extends Item implements PickupHandling {
     protected ConsumableType consumableType;
 
@@ -23,11 +37,26 @@ public class Consumable extends Item implements PickupHandling {
         return consumableType;
     }
 
+    /**
+     * Simple on pickup message.
+     * Take note that player is by design given limited info
+     * about the items.
+     * Although GUI provides strong indicies via the icons.
+     * @return Simple message for the player that he has picked up something
+     */
     @Override
     public String pickUpMessage() {
         return "You have picked up " + this.name + "!";
     }
 
+    /**
+     * Method invoked upon the exploration loot command.
+     * Attempts to pickup the existing item a nullifies it afterwards.
+     * Method will skip this step if inventory capacity is exceeded.
+     *
+     * @param game Game instance from which items are taken and where player exists
+     * @return String descriptor of the transpired effect
+     */
     @Override
     public String pickUpEffect(Game game) {
 
@@ -40,8 +69,18 @@ public class Consumable extends Item implements PickupHandling {
 
     }
 
-
-
+    /**
+     * Instantiated version of the original Item handling from the CLI version.
+     * Takes the info about the consumable type from the original call and invokes the switch statement.
+     * Adds the effective value of the item to the corresponding field.
+     * Take note that check functions are invoked for health and mana fills to prevent
+     * exceeding expected maximal values.
+     *
+     * @param game instance of the game from which effect has been triggered.
+     * @param type type of the effect to be invoked
+     * @param value Integer value representing the change which should transpire.
+     * @return string message informing the player of the change that has transpired
+     */
     public String executeConsumableEffect (Game game, ConsumableType type , int value) {
         switch (type) {
             case HEALTH_FILL -> {
@@ -66,6 +105,10 @@ public class Consumable extends Item implements PickupHandling {
         return "";
     }
 
+    /**
+     * Simplified toString call, used by the ListView in the GUI.
+     * @return Name of the consumable
+     */
     @Override
     public String toString() {
         return super.name;

@@ -16,6 +16,14 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 public class TheBrute extends Monster implements HostileActions {
 
 
+    /**
+     * Standard constructor variant for the Monster class
+     *
+     * @param name String - Name of the creature
+     * @param health Integer - health value of the creature
+     * @param damage Integer - Basic damage of the creature before modifiers
+     * @param goldDrop Integer - Amount of gold player will receive after defeating the monster
+     */
     public TheBrute(String name, int health, int damage, int goldDrop) {
         super(name, health, damage, goldDrop);
     }

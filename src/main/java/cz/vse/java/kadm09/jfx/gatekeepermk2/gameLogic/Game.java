@@ -11,6 +11,22 @@ import java.util.Set;
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.ENDGAME;
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor on 4.12.2022
+ *
+ * <p> Interconnecting class for the various game components and info.
+ * Please check required classes for further reference.
+ * Special explanation for some of the fields:
+ *     INITIATIVE - boolean flag turned false when in combat, ensures that game returns
+ *     to correct gamestate when switching between menus
+ * </p>
+ *
+ * @see GameState
+ * @see TheKnight
+ * @see Map
+ * @see Setup
+ */
 public class Game implements ObservedElement{
 
     public boolean initiative = true;
@@ -28,6 +44,11 @@ public class Game implements ObservedElement{
     public Set<Observer> listOfObservers = new HashSet<>();
 
 
+    /**
+     * Standard game constructor.
+     * Calls auxiliary setup methods to created individual instances.
+     * @see Setup#initializeDialogues(Game)
+     */
     public Game() {
         this.gameState = Setup.initGameState();
         this.player = Setup.createKnight();
@@ -52,6 +73,18 @@ public class Game implements ObservedElement{
         return dialogueScout;
     }
 
+    /**
+     * Called by the Controller methods between user inputs to prevent
+     * game reaching undesirable states. Validates player health and mana values.
+     * Resets the initiative flag if player is no longer in combat.
+     * <p>
+     * If hostile health has been depleted, nullifies the instances and triggers the kill postconditions.
+     * (Gold drop, gamemap modifications)
+     * </p>
+     * @return String with current position description upon successful method completion
+     *
+     * @see Game#updateDescriptors()
+     */
     public String checkGameStatus () {
 
         if (this.getPlayer().getCurrentHealth() <= 0 ) this.getPlayer().setDead(true);
@@ -71,6 +104,14 @@ public class Game implements ObservedElement{
 
         return "";
     }
+
+    /**
+     * Called when enemy health has been reduced to or below zero.
+     * Runs IF checks for which enemies are still alive and updates room descriptions as necessary.
+     * Unlocks the boss room if needed.
+     * Sets the endgame condition if final boss has been killed.
+     *
+     */
     private void updateDescriptors () {
 
         if (this.gameMap.getCurrentPosition(2,0).getRoomEnemy() == null) {
@@ -153,6 +194,14 @@ public class Game implements ObservedElement{
 
     }
 
+    /**
+     * Iterates through the dialogue array everytime player
+     * interacts with the spawn room. Check is performed after
+     * each call to reset iterator back to 0. Dialogue with the scout
+     * therefore can be repeated indefinitely.
+     *
+     * @return String with game hints for the player
+     */
     public String callScout () {
         String toReturn = dialogueScout.get(dialogueIterator);
         dialogueIterator++;
@@ -160,6 +209,15 @@ public class Game implements ObservedElement{
         return toReturn;
     }
 
+    /**
+     * Called via the command list when the player agrees to rest.
+     * Unlike the marketplace, rest price remains constant no matter the amount
+     * of rests.
+     * Resting resets health and mana of the player to the max values, it also
+     * increases damage a bit.
+     *
+     * @return String with a description of the interaction resolution
+     */
     public String rest() {
 
         int restPrice = 300;
@@ -173,6 +231,13 @@ public class Game implements ObservedElement{
         return "You are feeling well rested and prepared to fight!";
     }
 
+    /**
+     * Called by the command list when player agrees to trade with the huntsman.
+     * Runs a simple calculation via the respective iterator to determine the expected price.
+     * Declines the trade if the player does not have sufficient funds.
+     *
+     * @return String with a description of the event and updated damage number
+     */
     public String improveWeapons() {
         int calcPrice = huntsmanIterator * upgradePrice;
         if(this.getPlayer().getGoldHeld() < calcPrice) return "You do not have enough money! Huntsman currently needs: " + calcPrice;

@@ -8,13 +8,38 @@ import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
 
 /**
  * @author Martin Kadlec
- * @version 1.0.0
- *
+ * @version Last refactored on 4.12.2022
  * Public class which handles the command processing
  * for both CLI and GUI version of the game.
+ *
+ * <p> The dichotomy of the CLI vs. GUI approach is resolved
+ * by nesting switch statements within IF ELSE branches checking the
+ * game.gamestate field.</p>
+ *
+ * <p>The commands call the required methods with the game instances
+ * and String representation of the command, String value is returned with info to print
+ * to the respectice output area.</p>
+ *
+ * @see Main
+ * @see GUIController
+ * @see TextHandler
+ * @see Game
+ * @see GameState
  */
 public class Commands {
 
+    /**
+     * CLI version auxiliary method.
+     * Uses scanner.nextLine method to await for the user input,
+     * invokes the TextHandler class validation on it and then attempts to call
+     * commandList.
+     *
+     * @param game Instance of the game currently asking for the data
+     * @return String with description of the occurred actions.
+     *
+     * @see Main
+     * @see TextHandler
+     */
     public static String processInput (Game game) {
         Scanner input = new Scanner(System.in);
         System.out.println(" > ");
@@ -23,6 +48,14 @@ public class Commands {
         return commandList(enteredText.toLowerCase(), game);
     }
 
+    /**
+     * Actual intermediary between all of the other involved classes
+     * and two input methods. See class description for higher detail.
+     *
+     * @param input String with the (already validated at this point) command to execute
+     * @param game Instance of the game currently holding the data
+     * @return String description of the executed command and its results.
+     */
     public static String commandList (String input, Game game) {
 
         if (game.gameState == EXPLORATION) {

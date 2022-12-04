@@ -3,7 +3,6 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Consumable;
-import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Item;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -49,7 +47,7 @@ public class GUIController implements Observer{
     public Button GUIQCPoS;
     public Button GUIQCPoR;
     public ImageView GUIGamestateIcon;
-    public ListView GUIInventoryList;
+    public ListView<Consumable> GUIInventoryList;
 
     @FXML
     private void initialize (){
@@ -64,7 +62,10 @@ public class GUIController implements Observer{
         present(game.gameMap.presentPosition(game.player));
         Platform.runLater(() -> GUIInput.requestFocus());
 
-        GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
+
+        //fillInventoryList();
+
+        /*GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
             private void updateItem(Consumable consumable, boolean empty) {
                 super.updateItem(consumable, empty);
                 if(!empty) {
@@ -74,7 +75,7 @@ public class GUIController implements Observer{
                     setGraphic(null);
                 }
             }
-        });
+        }); */
 
     }
 
@@ -285,10 +286,8 @@ public class GUIController implements Observer{
 
     public void fillInventoryList () {
         GUIInventoryList.getItems().clear();
-        Collection<Consumable> items = null;
-        if (game.player.inventory.size() > 0) {
-            items.addAll(game.player.inventory);
-        }
+        if (game.player.inventory.size() == 0) return;
+        Collection<Consumable> items = game.player.getInventory();
 
 
         GUIInventoryList.getItems().addAll(items);
@@ -325,6 +324,7 @@ public class GUIController implements Observer{
         game = new Game();
         initialize();
         syncGameState();
+        fillInventoryList();
     }
 
     public void quitGame() {

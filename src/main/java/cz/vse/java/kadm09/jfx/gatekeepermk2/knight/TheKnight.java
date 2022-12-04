@@ -95,6 +95,10 @@ public class TheKnight implements ObservedElement {
         isDead = dead;
     }
 
+    public ArrayList<Consumable> getInventory() {
+        return inventory;
+    }
+
     public TheKnight(int currentHealth, int currentMana, int armor, int damage, int goldHeld, Coordinates position, boolean isDead) {
         this.currentHealth = currentHealth;
         this.currentMana = currentMana;

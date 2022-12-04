@@ -55,24 +55,34 @@ public class GUIController implements Observer{
         present(Setup.introMessage());
         game.player.registerObserver(this);
 
-        healthLabel.appendText("HEALTH:");
-        showHealth(game.player);
-        manaLabel.appendText("MANA:");
-        showMana(game.player);
-
-        armorLabel.appendText("ARMOR");
-        showArmor(game.player);
-
-        damageLabel.appendText("DAMAGE");
-        showDamage(game.player);
-
-        goldLabel.appendText("GOLD HELD");
-        showGold(game.player);
+        prepareLabels();
 
         centerImage();
 
         present(game.gameMap.presentPosition(game.player));
         Platform.runLater(() -> GUIInput.requestFocus());
+    }
+
+    private void prepareLabels() {
+        healthLabel.clear();
+        healthLabel.appendText("HEALTH:");
+        showHealth(game.player);
+
+        manaLabel.clear();
+        manaLabel.appendText("MANA:");
+        showMana(game.player);
+
+        armorLabel.clear();
+        armorLabel.appendText("ARMOR");
+        showArmor(game.player);
+
+        damageLabel.clear();
+        damageLabel.appendText("DAMAGE");
+        showDamage(game.player);
+
+        goldLabel.clear();
+        goldLabel.appendText("GOLD HELD");
+        showGold(game.player);
     }
 
     @FXML
@@ -280,6 +290,9 @@ public class GUIController implements Observer{
     }
 
     public void startNewGame() {
+        game = new Game();
+        initialize();
+        syncGameState();
     }
 
     public void quitGame() {

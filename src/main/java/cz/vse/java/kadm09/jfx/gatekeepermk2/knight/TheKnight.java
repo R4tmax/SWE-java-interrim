@@ -1,5 +1,6 @@
 package cz.vse.java.kadm09.jfx.gatekeepermk2.knight;
 
+import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.ObservedElement;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Observer;
@@ -241,10 +242,10 @@ public class TheKnight implements ObservedElement {
 
     public String useItem (Game game,String input) {
 
-        String toUse = input.toLowerCase().replaceAll("\\s","");
+        String toUse = TextHandler.simplifyInput(input);
 
         for (Consumable consumable : this.inventory) {
-            if (toUse.equals(consumable.getName().toLowerCase().replaceAll("\\s",""))) {
+            if (toUse.equals(TextHandler.simplifyInput(consumable.getName()))) {
                 String remember = consumable.executeConsumableEffect(game,consumable.getConsumableType(), consumable.getEffectiveValue());
                 this.inventory.remove(consumable);
                 notifyObserver();

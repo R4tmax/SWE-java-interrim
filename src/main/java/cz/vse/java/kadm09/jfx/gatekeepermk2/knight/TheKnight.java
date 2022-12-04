@@ -14,17 +14,20 @@ import java.util.Set;
 
 /**
  * @author Martin Kadlec
- * @version 2.0.0
+ * @version Last refactor on 4.12.2022
  *
  * <p>
  *     Main class of the game.
  *     Represents the player character of the game
  *     through which the entire experience plays out.
+ *     Take note that this class, together with the Map Class, has been entirely
+ *     reworked from the original CLI version used in 4IT101.
  * </p>
  *
  * @see Coordinates
  * @see Map
  * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Main
+ * @see Game
  *
  */
 public class TheKnight implements ObservedElement {
@@ -100,6 +103,17 @@ public class TheKnight implements ObservedElement {
         return inventory;
     }
 
+    /**
+     * Standard Knight constructor.
+     *
+     * @param currentHealth Health of the player, game ends if this reaches 0, cannot exceed MAXHEALTH
+     * @param currentMana Mana of the player, used as a resource to cast spells, cannot exceed MAXMANA
+     * @param armor Armor value of the player, reduces incoming damage by a flat amount
+     * @param damage Damage of the player, is applied to monsters when striking
+     * @param goldHeld Gold pool of the player, used to buy upgrades and rest.
+     * @param position Coordinates of the player, interacted with through Map class
+     * @param isDead Boolean, set to true if health drops below (or equals) 0
+     */
     public TheKnight(int currentHealth, int currentMana, int armor, int damage, int goldHeld, Coordinates position, boolean isDead) {
         this.currentHealth = currentHealth;
         this.currentMana = currentMana;
@@ -114,6 +128,9 @@ public class TheKnight implements ObservedElement {
         return position;
     }
 
+    /**
+     * @return Returns all of the stats of the player
+     */
     public String presentKnightStatusExploration() {
         String toPresent = "Current health: " + this.currentHealth + "\n";
 
@@ -129,6 +146,9 @@ public class TheKnight implements ObservedElement {
         return toPresent;
     }
 
+    /**
+     * @return Possible commands for the exploration gamestate
+     */
     public String presentCommandListExploration() {
         return  """
                 Following commands are available to you at the moment:
@@ -145,6 +165,9 @@ public class TheKnight implements ObservedElement {
                 """;
     }
 
+    /**
+     * @return Possible commands for the command gamestate
+     */
     public String presentCommandListCombat() {
        return """ 
                 Following commands are available to you at the moment:
@@ -195,6 +218,16 @@ public class TheKnight implements ObservedElement {
         if (this.currentMana > MAX_MANA) this.setCurrentMana(MAX_MANA);
     }
 
+    /**
+     * Primary movement method for the player.
+     * Depending on the string held within the direction String
+     * creates a temporary change to the player position, which is in turn
+     * validated via auxiliary method.
+     *
+     * @param direction Desired Direction from the list of NORTH,SOUTH,WEST,EAST
+     * @param game Instance of the game holding the player and the map
+     * @return String of the result from the move validation
+     */
     public String moveKnight (String direction, Game game) {
         int tmpHorizontal = game.getPlayer().position.horizontal;
         int tmpVertical = game.getPlayer().position.vertical;
@@ -210,6 +243,24 @@ public class TheKnight implements ObservedElement {
 
     }
 
+    /**
+     * Called after each correct call to the moveKnight method.
+     * <p>
+     * First, checks if the room to be accessed is unlocked, otherwise
+     * resets the player position.
+     * <p>
+     * Else,
+     * Calls a try-catch block with the current player position, if
+     * out of bounds exception is met, resets the position to the last known
+     * correct position.
+     *
+     * @param tmpHorizontal Saved last known X correct coordinate value
+     * @param tmpVertical Saved last known Y correct coordinate value
+     * @param player Instance of the player to be moved
+     * @param gameMap Instance of the Map where the player is moving
+     * @return String descriptor of the transpired effect
+     * @throws ArrayIndexOutOfBoundsException Expected to be triggerred when leaving the game area
+     */
     private String validateMove(int tmpHorizontal, int tmpVertical, TheKnight player, Map gameMap) {
         try {
             if (gameMap.getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).isLocked()) {
@@ -229,6 +280,15 @@ public class TheKnight implements ObservedElement {
         return "";
     }
 
+    /**
+     * Checks whether current postion has any items, if so,
+     * attempts to pick them up.
+     * External call can decide not to pickup item if it is
+     * of consumable type and inventory currently has five items in it.
+     *
+     * @param game instance of the game holding all the required data
+     * @return String description of the resultant effects
+     */
     public String attemptPickup (Game game) {
         if (game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot() == null) {
             return "There is nothing to pickup!";
@@ -240,6 +300,16 @@ public class TheKnight implements ObservedElement {
         }
     }
 
+    /**
+     * Compares inventory contents against expected
+     * name of the item.
+     * If name is found, trigger the effect, otherwise
+     * just informs the player of name discrepancy.
+     *
+     * @param input Name of the item given by the player
+     * @param game instance of the game holding all the required data
+     * @return String description of the resultant effects
+     */
     public String useItem (Game game,String input) {
 
         String toUse = TextHandler.simplifyInput(input);
@@ -256,6 +326,9 @@ public class TheKnight implements ObservedElement {
 
     }
 
+    /**
+     * @return Names of the items currently held
+     */
     public String presentInventoryContent () {
         StringBuilder toPresent = new StringBuilder("Currently held: \n");
         for (Consumable item : this.inventory ) {
@@ -266,6 +339,9 @@ public class TheKnight implements ObservedElement {
         return toPresent.toString();
     }
 
+    /**
+     * @return List of spells player can use
+     */
     public String presentSpelllist() {
         return """
                 You have following spells at your disposal:
@@ -280,6 +356,13 @@ public class TheKnight implements ObservedElement {
                 """;
     }
 
+    /**
+     * Basic offensive spell of the player
+     * Very cost effective but deals limited damage to stronger creatures.
+     *
+     * @param game Game instance holding the required data
+     * @return String description of the transpired spell effects, differs on circumstances
+     */
     public String lightningTouch(Game game) {
         int manaCost = 5;
         if (manaCost > this.currentMana) {
@@ -296,6 +379,11 @@ public class TheKnight implements ObservedElement {
         return "Your enemy took a nice hit!";
     }
 
+
+    /**
+     * Simple player heal.
+     * @return String description of the transpired spell effects, differs on circumstances
+     */
     public String heal() {
         int manaCost = 15;
         if (manaCost > this.currentMana) {
@@ -311,11 +399,11 @@ public class TheKnight implements ObservedElement {
     /**
      * Combines functionalities of lightning touch and heal.
      * With modified values.
-     * <p>
-     * <p>
      * Take note that from technical standpoint this
      * is considered to be offensive spell, and as such cannot be used
      * outside of combat.
+     * @param game Game instance holding all of the data
+     * @return  String description of the transpired spell effects, differs on circumstances
      */
     public String holySmite(Game game) {
         int manaCost = 25;
@@ -337,7 +425,9 @@ public class TheKnight implements ObservedElement {
 
     /**
      * Supercharged version of lightning touch.
-     *
+     * Deals massive damage for massive mana cost.
+     * @param game Game instance holding all of the data
+     * @return  String description of the transpired spell effects, differs on circumstances
      */
     public String lightningStrike(Game game) {
         int manaCost = 50;
@@ -359,9 +449,11 @@ public class TheKnight implements ObservedElement {
     /**
      * Permanently increases armor value of
      * The Knight upon use.
-     * <p>
      * Take note that trying to cast this in
      * 'hostile' rooms will cause miscast.
+     * @param game Game instance holding all of the data
+     * @return  String description of the transpired spell effects, differs on circumstances
+     * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.RoomType
      */
     public String prayerOfResolve(Game game) {
         int manaCost = 35;
@@ -382,9 +474,11 @@ public class TheKnight implements ObservedElement {
     /**
      * Permanently increases damage value of
      * The Knight upon use.
-     * <p>
      * Take note that trying to cast this in
      * 'hostile' rooms will break cause miscast.
+     * @param game Game instance holding all of the data
+     * @return  String description of the transpired spell effects, differs on circumstances
+     * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameworld.RoomType
      */
     public String prayerOfStrength(Game game) {
         int manaCost = 35;
@@ -403,11 +497,19 @@ public class TheKnight implements ObservedElement {
     }
 
 
+    /**
+     * Signs in knight as observed element.
+     * @param observer Class which will observe this class
+     */
     @Override
     public void registerObserver(Observer observer) {
         listOfObservers.add(observer);
     }
 
+    /**
+     * Triggers the update method for all of the observers.
+     * Used to update GUI stat fields.
+     */
     private void notifyObserver() {
         for(Observer observer : listOfObservers) {
             observer.updateStatus();

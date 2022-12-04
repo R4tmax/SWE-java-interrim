@@ -117,7 +117,7 @@
                 </ImageView>
             </Pane>
         </GridPane>
-      <ListView prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="GUIInventoryList" prefHeight="200.0" prefWidth="200.0" />
     </GridPane>
     <ToolBar prefHeight="40.0" prefWidth="200.0">
         <Button onAction="#startNewGame" mnemonicParsing="false" text="New Game"/>

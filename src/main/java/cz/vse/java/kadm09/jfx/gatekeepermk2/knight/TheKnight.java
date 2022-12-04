@@ -228,7 +228,11 @@ public class TheKnight implements ObservedElement {
         if (game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot() == null) {
             return "There is nothing to pickup!";
         }
-        else return game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot().pickUpEffect(game);
+        else {
+            String remember = game.getGameMap().getCurrentPosition(game.getPlayer().position.horizontal, game.getPlayer().position.vertical).getRoomLoot().pickUpEffect(game);
+            notifyObserver();
+            return remember;
+        }
     }
 
     public String useItem (Game game,String input) {
@@ -239,6 +243,7 @@ public class TheKnight implements ObservedElement {
             if (toUse.equals(consumable.getName().toLowerCase().replaceAll("\\s",""))) {
                 String remember = consumable.executeConsumableEffect(game,consumable.getConsumableType(), consumable.getEffectiveValue());
                 this.inventory.remove(consumable);
+                notifyObserver();
                 return remember;
             }
         }

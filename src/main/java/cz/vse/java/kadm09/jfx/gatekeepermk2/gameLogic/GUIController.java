@@ -2,19 +2,20 @@ package cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic;
 
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.Setup;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.auxiliary.TextHandler;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Consumable;
+import cz.vse.java.kadm09.jfx.gatekeepermk2.items.Item;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
@@ -48,6 +49,7 @@ public class GUIController implements Observer{
     public Button GUIQCPoS;
     public Button GUIQCPoR;
     public ImageView GUIGamestateIcon;
+    public ListView GUIInventoryList;
 
     @FXML
     private void initialize (){
@@ -61,6 +63,19 @@ public class GUIController implements Observer{
 
         present(game.gameMap.presentPosition(game.player));
         Platform.runLater(() -> GUIInput.requestFocus());
+
+        GUIInventoryList.setCellFactory(ConsumableListView -> new ListCell<>() {
+            private void updateItem(Consumable consumable, boolean empty) {
+                super.updateItem(consumable, empty);
+                if(!empty) {
+                    setText(consumable.getName());
+                } else {
+                    setText(null);
+                    setGraphic(null);
+                }
+            }
+        });
+
     }
 
     private void prepareLabels() {
@@ -200,6 +215,8 @@ public class GUIController implements Observer{
         showArmor(game.player);
         showDamage(game.player);
         showGold(game.player);
+
+        fillInventoryList();
     }
 
     @FXML
@@ -265,6 +282,21 @@ public class GUIController implements Observer{
         present(game.player.prayerOfResolve(game));
         syncGameState();
     }
+
+    public void fillInventoryList () {
+        GUIInventoryList.getItems().clear();
+        Collection<Consumable> items = null;
+        if (game.player.inventory.size() > 0) {
+            items.addAll(game.player.inventory);
+        }
+
+
+        GUIInventoryList.getItems().addAll(items);
+    }
+
+
+
+
 
     /**
      * <a href="https://stackoverflow.com/questions/32781362/centering-an-image-in-an-imageview">Original SO reference</a>

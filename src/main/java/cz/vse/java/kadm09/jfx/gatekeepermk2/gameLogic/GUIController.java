@@ -157,6 +157,9 @@ public class GUIController implements Observer{
             GUIInput.setDisable(true);
         }
 
+        changeIcon();
+        centerImage();
+
         if (game.gameState != EXPLORATION) {
             GUIQMLook.setDisable(true);
             GUIQMUp.setDisable(true);
@@ -332,6 +335,17 @@ public class GUIController implements Observer{
             GUIGamestateIcon.setY((GUIGamestateIcon.getFitHeight() - h) / 2);
 
         }
+    }
+
+    private void changeIcon() {
+        Enum<GameState> state = game.gameState;
+        Image toShow;
+        if (state.equals(EXPLORATION)) {
+            toShow = new Image(String.valueOf(getClass().getResource("explore.png")));
+        } else {
+            toShow = new Image(String.valueOf(getClass().getResource("nourishingbread.png")));
+        }
+        GUIGamestateIcon.setImage(toShow);
     }
 
     public void startNewGame() {

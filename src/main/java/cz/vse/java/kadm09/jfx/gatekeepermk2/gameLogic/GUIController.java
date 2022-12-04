@@ -17,8 +17,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Objects;
 
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.COMBAT;
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
 
 public class GUIController implements Observer{
     public TextArea GUIHealth;
@@ -172,6 +171,8 @@ public class GUIController implements Observer{
             GUIQMDown.setDisable(true);
             GUIQMLeft.setDisable(true);
             GUIQMRight.setDisable(true);
+            Image toShow = new Image(String.valueOf(getClass().getResource("combat.png")));
+            GUIGamestateIcon.setImage(toShow);
         } else if (!game.initiative) {
             GUIQMLook.setDisable(true);
             GUIQMUp.setDisable(true);
@@ -342,6 +343,22 @@ public class GUIController implements Observer{
         Image toShow;
         if (state.equals(EXPLORATION)) {
             toShow = new Image(String.valueOf(getClass().getResource("explore.png")));
+        } else if (state.equals(MOVEMENT)) {
+            toShow = new Image(String.valueOf(getClass().getResource("movement.png")));
+        }else if (state.equals(COMBAT)) {
+            toShow = new Image(String.valueOf(getClass().getResource("combat.png")));
+        } else if (state.equals(SPELLCAST)) {
+            toShow = new Image(String.valueOf(getClass().getResource("magic.png")));
+        } else if (state.equals(INVENTORY)) {
+            toShow = new Image(String.valueOf(getClass().getResource("backpack.png")));
+        }else if (state.equals(INN)) {
+            toShow = new Image(String.valueOf(getClass().getResource("bed.png")));
+        }else if (state.equals(MARKET)) {
+            toShow = new Image(String.valueOf(getClass().getResource("pouch.png")));
+        }else if (state.equals(HUNTSMAN)) {
+            toShow = new Image(String.valueOf(getClass().getResource("bow.png")));
+        }else if (state.equals(ARMORSMITH)) {
+            toShow = new Image(String.valueOf(getClass().getResource("armor.png")));
         } else {
             toShow = new Image(String.valueOf(getClass().getResource("nourishingbread.png")));
         }

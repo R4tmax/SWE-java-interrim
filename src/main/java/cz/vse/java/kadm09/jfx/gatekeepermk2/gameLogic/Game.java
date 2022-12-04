@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.ENDGAME;
-import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.EXPLORATION;
+import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
 
 /**
  * @author Martin Kadlec
@@ -87,7 +86,10 @@ public class Game implements ObservedElement{
      */
     public String checkGameStatus () {
 
-        if (this.getPlayer().getCurrentHealth() <= 0 ) this.getPlayer().setDead(true);
+        if (this.getPlayer().getCurrentHealth() <= 0 ) {
+            this.getPlayer().setDead(true);
+            this.setGameState(DEATH);
+        }
         if (this.getPlayer().getCurrentMana() <= 0) this.getPlayer().setCurrentMana(0);
         if (this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy() == null)
             this.initiative = true;
@@ -248,6 +250,13 @@ public class Game implements ObservedElement{
         return "Your weapons have been upgraded, you currently deal: " + this.player.getDamage() + "Damage!";
     }
 
+    /**
+     * Called by the command list when player agrees to trade with the armor smith.
+     * Runs a simple calculation via the respective iterator to determine the expected price.
+     * Declines the trade if the player does not have sufficient funds.
+     *
+     * @return String with a description of the event and updated damage number
+     */
     public String improveArmor() {
         int calcPrice = armorsmithIterator * upgradePrice;
         if(this.getPlayer().getGoldHeld() < calcPrice) return "You do not have enough money! Armorsmith currently needs: " + calcPrice;
@@ -258,16 +267,30 @@ public class Game implements ObservedElement{
         return "Your armor has been refitted, you now have: " + this.player.getArmor() + "Armor!";
     }
 
+    /**
+     * Facilitates the basic attack of the players, while technically
+     * a knight method affecting the monster. It is placed within the game package to
+     * simplify method calls.
+     *
+     * @return String description of the damage dealt to the monster
+     */
     public String strikeEnemy() {
          this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().setHealth(this.getGameMap().getCurrentPosition(this.player.getPosition().getHorizontal(),this.player.getPosition().getVertical()).getRoomEnemy().getHealth() - this.player.getDamage());
          return "You hit your enemy for: " + this.player.getDamage();
     }
 
+    /**
+     * Adds a new observer to the list of observers to notify.
+     * @param observer Instance of the class which signs in to observe the element
+     */
     @Override
     public void registerObserver(Observer observer) {
         listOfObservers.add(observer);
     }
 
+    /**
+     * Calls the GUI update method to validate labels on the FE
+     */
     private void notifyObserver() {
         for(Observer observer : listOfObservers) {
             observer.updateStatus();

@@ -8,6 +8,19 @@ import cz.vse.java.kadm09.jfx.gatekeepermk2.items.ConsumableType;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.items.MoneyLoot;
 import cz.vse.java.kadm09.jfx.gatekeepermk2.knight.TheKnight;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor on 4.12.2022
+ *
+ * <p>
+ *     Holder class for the individual rooms of the game.
+ *     Facilitates access to the rooms and its contents
+ * </p>
+ *
+ * @see Room
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.knight.Coordinates
+ * @see cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.Game
+ */
 public class Map {
     private final Room [][] gameArea = new Room[5][5];
 
@@ -17,12 +30,20 @@ public class Map {
         return gameArea[x][y];
     }
 
+    /**
+     * @param player Instance of the Knight currently used and whose position should be outputed
+     * @return Name and description of the room as a single String Value concatenated by newline.
+     */
     public String presentPosition(TheKnight player) {
         return getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).getName()
                 + "\n"
                 + getCurrentPosition(player.getPosition().getHorizontal(),player.getPosition().getVertical()).getDescription();
     }
 
+    /**
+     * Room factory function.
+     * Fills the gameMap with data.
+     */
     public void fillMap () {
 
         //First row - Northernmost

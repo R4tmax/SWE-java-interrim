@@ -370,6 +370,8 @@ public class GUIController implements Observer{
         initialize();
         syncGameState();
         fillInventoryList();
+        GUIInput.setDisable(false);
+        GUIOutput.setDisable(false);
     }
 
     public void quitGame() {

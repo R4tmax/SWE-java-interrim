@@ -7,6 +7,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactor on 10.12.2022
+ *
+ * Tests player movement and spell casting.
+ */
 class TheKnightTest {
 
     Game TestingGrounds = new Game();
@@ -85,6 +91,27 @@ class TheKnightTest {
         assertEquals(0,TestingGrounds.getPlayer().getPosition().getHorizontal());
         assertEquals(4,TestingGrounds.getPlayer().getPosition().getVertical());
 
+    }
+
+    @Test
+    void offensiveSpellsLock () {
+        String readbackLT = TestingGrounds.getPlayer().lightningTouch(TestingGrounds);
+        String readbackS = TestingGrounds.getPlayer().holySmite(TestingGrounds);
+        String readbackLS = TestingGrounds.getPlayer().lightningStrike(TestingGrounds);
+        assertEquals("No target!",readbackLT);
+        assertEquals("No target!",readbackS);
+        assertEquals("No target!",readbackLS);
+    }
+
+    @Test
+    void buffSpellBehavior () {
+        TestingGrounds.getPlayer().prayerOfStrength(TestingGrounds);
+        TestingGrounds.getPlayer().prayerOfResolve(TestingGrounds);
+        assertEquals(35,TestingGrounds.getPlayer().getDamage());
+        assertEquals(6,TestingGrounds.getPlayer().getArmor());
+
+        String noManaReadback = TestingGrounds.getPlayer().prayerOfResolve(TestingGrounds);
+        assertEquals("Not enough mana to cast!",noManaReadback);
     }
 
 }

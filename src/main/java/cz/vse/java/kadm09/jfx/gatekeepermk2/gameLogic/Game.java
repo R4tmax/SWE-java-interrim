@@ -18,7 +18,7 @@ import static cz.vse.java.kadm09.jfx.gatekeepermk2.gameLogic.GameState.*;
  * Please check required classes for further reference.
  * Special explanation for some of the fields:
  *     INITIATIVE - boolean flag turned false when in combat, ensures that game returns
- *     to correct gamestate when switching between menus
+ *     to correct gamestate when switching between menus.
  * </p>
  *
  * @see GameState
